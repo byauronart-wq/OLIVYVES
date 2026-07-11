@@ -37,15 +37,15 @@ const I18N = {
     'gallery.cta': 'Ir para a loja →',
 
     'piece.01.h': 'Profundidade',
-    'piece.01.p': 'Azul profundo em anel circular — quieto, contemplativo, feito para espaços de respiração.',
+    'piece.01.p': 'Azul em degradê. Espaço aberto.',
     'piece.02.h': 'Horizonte',
-    'piece.02.p': 'Um pôr-do-sol contido num retângulo — magenta a arder em laranja, núcleo escuro ao centro.',
+    'piece.02.p': 'Pôr-do-sol em acrílico. Momento suspenso.',
     'piece.03.h': 'Penumbra',
-    'piece.03.p': 'Violeta a dissolver-se em azul-gelo — a peça certa para uma divisão que já vive em meia-luz.',
+    'piece.03.p': 'Violeta e azul. Entardecer quieto.',
     'piece.04.h': 'Claridade',
-    'piece.04.p': 'Sobre parede branca, a aura fica em primeiro plano — nenhuma distração, só cor.',
+    'piece.04.p': 'Cor sobre branco. Presença clara.',
     'piece.05.h': 'Carácter',
-    'piece.05.p': 'Contra betão e madeira crua, a aura suaviza o espaço sem o disfarçar.',
+    'piece.05.p': 'Laranja e roxo. Espessura visual.',
 
     'material.eyebrow': 'O material',
     'material.title': 'Acrílico translúcido.<br>Sem luz própria — <span>por agora.</span>',
@@ -59,7 +59,7 @@ const I18N = {
 
     'about.eyebrow': 'A coleção',
     'about.title': 'AURON nasce da luz<br>que já existe na tua casa.',
-    'about.copy': 'O nome vem de "aura" — o halo de cor e luz que rodeia algo. É essa a ideia: peças que não impõem uma imagem, mas uma atmosfera. AURON é a primeira coleção OLIVEIRA — hoje, peças em acrílico translúcido; a seguir, lightboxes com luz própria; depois, uma loja onde cada cliente gera a sua aura e a vê, em tempo real, pendurada na sua própria divisão.',
+    'about.copy': 'O nome vem de "aura" — o halo de cor e luz que rodeia algo. É essa a ideia: peças que não impõem uma imagem, mas uma atmosfera. AURON é a primeira coleção OLIV YVES — hoje, peças em acrílico translúcido; a seguir, lightboxes com luz própria; depois, uma loja onde cada cliente gera a sua aura e a vê, em tempo real, pendurada na sua própria divisão.',
     'about.cta': 'Ver a loja',
 
     'footer.tag': 'byauron.art · © 2026',
@@ -68,7 +68,7 @@ const I18N = {
     'footer.returns': 'Devoluções',
     'footer.payments': 'Pagamentos e envios',
     'footer.contact': 'Contacto',
-    'footer.rights': '© 2026 OLIVEIRA · Ivo de Oliveira. Todos os direitos reservados.',
+    'footer.rights': '© 2026 OLIV YVES · Ivo de Oliveira. Todos os direitos reservados.',
 
     /* --- Loja --- */
     'shop.eyebrow': 'Loja',
@@ -116,15 +116,15 @@ const I18N = {
     'gallery.cta': 'Go to the shop →',
 
     'piece.01.h': 'Depth',
-    'piece.01.p': 'Deep blue in a circular ring — quiet, contemplative, made for spaces of breath.',
+    'piece.01.p': 'Blue in gradient. Open space.',
     'piece.02.h': 'Horizon',
-    'piece.02.p': 'A sunset held in a rectangle — magenta burning into orange, a dark core at its centre.',
+    'piece.02.p': 'Sunset in acrylic. Suspended moment.',
     'piece.03.h': 'Penumbra',
-    'piece.03.p': 'Violet dissolving into ice-blue — the right piece for a room that already lives in half-light.',
+    'piece.03.p': 'Violet and blue. Quiet dusk.',
     'piece.04.h': 'Clarity',
-    'piece.04.p': 'On a white wall, the aura takes the foreground — no distraction, just colour.',
+    'piece.04.p': 'Colour on white. Clear presence.',
     'piece.05.h': 'Character',
-    'piece.05.p': 'Against concrete and raw wood, the aura softens the space without hiding it.',
+    'piece.05.p': 'Orange and violet. Visual weight.',
 
     'material.eyebrow': 'The material',
     'material.title': 'Translucent acrylic.<br>No light of its own — <span>for now.</span>',
@@ -138,7 +138,7 @@ const I18N = {
 
     'about.eyebrow': 'The collection',
     'about.title': 'AURON is born from the light<br>already in your home.',
-    'about.copy': 'The name comes from "aura" — the halo of colour and light around something. That is the idea: pieces that impose not an image, but an atmosphere. AURON is the first OLIVEIRA collection — today, translucent acrylic pieces; next, self-lit lightboxes; then, a shop where each customer generates their aura and sees it, in real time, hanging in their own room.',
+    'about.copy': 'The name comes from "aura" — the halo of colour and light around something. That is the idea: pieces that impose not an image, but an atmosphere. AURON is the first OLIV YVES collection — today, translucent acrylic pieces; next, self-lit lightboxes; then, a shop where each customer generates their aura and sees it, in real time, hanging in their own room.',
     'about.cta': 'View the shop',
 
     'footer.tag': 'byauron.art · © 2026',
@@ -147,7 +147,7 @@ const I18N = {
     'footer.returns': 'Returns',
     'footer.payments': 'Payments & shipping',
     'footer.contact': 'Contact',
-    'footer.rights': '© 2026 OLIVEIRA · Ivo de Oliveira. All rights reserved.',
+    'footer.rights': '© 2026 OLIV YVES · Ivo de Oliveira. All rights reserved.',
 
     /* --- Shop --- */
     'shop.eyebrow': 'Shop',
