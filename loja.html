@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OLIVEIRA — Loja</title>
+<meta name="description" content="OLIVEIRA — loja de peças de autor, por coleção. AURON: acrílico translúcido.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="shop-page">
+
+<div class="grain"></div>
+
+<header class="topbar solid">
+  <a href="index.html" class="wordmark">OLIVEIRA</a>
+  <nav>
+    <a href="index.html#colecoes" class="nav-main" data-i18n="nav.collections">Coleções</a>
+    <a href="loja.html" class="nav-main active" data-i18n="nav.shop">Loja</a>
+    <button class="lang" data-lang-toggle aria-label="Idioma / Language">
+      <span data-lang="pt">PT</span><span class="sep">/</span><span data-lang="en">EN</span>
+    </button>
+  </nav>
+</header>
+
+<section class="shop-head">
+  <p class="eyebrow" data-i18n="shop.eyebrow">Loja</p>
+  <h1 data-i18n="shop.title">Peças por coleção</h1>
+  <p class="shop-intro" data-i18n="shop.intro">Cada peça é uma edição limitada, feita por encomenda. Escolhe o tamanho para veres o preço.</p>
+  <div id="shop-filter" class="shop-filter"></div>
+</section>
+
+<!-- as coleções e peças são construídas por shop.js a partir de data.js -->
+<main id="shop-root"></main>
+
+<footer class="site-footer">
+  <div class="foot-top">
+    <a href="index.html" class="wordmark">OLIVEIRA</a>
+    <nav class="foot-links">
+      <a href="loja.html" data-i18n="nav.shop">Loja</a>
+      <a href="auron.html" data-i18n="nav.auron">AURON</a>
+      <a href="legal.html" data-i18n="footer.terms">Termos</a>
+      <a href="legal.html" data-i18n="footer.privacy">Privacidade</a>
+      <a href="mailto:ivodeoliveiradrive@gmail.com" data-i18n="footer.contact">Contacto</a>
+    </nav>
+  </div>
+  <div class="foot-bottom">
+    <p data-i18n="footer.rights">© 2026 OLIVEIRA · Ivo de Oliveira. Todos os direitos reservados.</p>
+    <p>byauron.art</p>
+  </div>
+</footer>
+
+<!-- MODAL de peça (detalhe) -->
+<div id="piece-modal" class="modal" hidden>
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-card" role="dialog" aria-modal="true">
+    <button class="modal-x" data-close aria-label="Fechar / Close">×</button>
+
+    <div class="modal-media">
+      <div class="carousel">
+        <div class="carousel-track" id="car-track"></div>
+        <button class="car-arrow prev" id="car-prev" aria-label="Anterior">‹</button>
+        <button class="car-arrow next" id="car-next" aria-label="Seguinte">›</button>
+      </div>
+      <div class="car-dots" id="car-dots"></div>
+    </div>
+
+    <div class="modal-info">
+      <p class="modal-collection" id="m-collection"></p>
+      <h2 id="m-name"></h2>
+      <p class="modal-edition" id="m-edition"></p>
+      <p class="modal-desc" id="m-desc"></p>
+
+      <div class="modal-field">
+        <label data-i18n="shop.size">Tamanho</label>
+        <div class="size-opts" id="m-sizes"></div>
+      </div>
+
+      <div class="modal-price">
+        <span class="price-label" data-i18n="shop.price">Preço</span>
+        <span class="price-value" id="m-price">—</span>
+        <span class="price-deposit" id="m-deposit"></span>
+      </div>
+
+      <a class="cta cta-order" id="m-order" href="#" target="_blank" rel="noopener" data-i18n="shop.order">Encomendar</a>
+      <p class="order-note" id="m-order-note" data-i18n="shop.order_note">Feito por encomenda · sinal de 50% para arrancar a produção</p>
+
+      <div class="modal-included">
+        <span class="inc-label" data-i18n="shop.included">Inclui</span>
+        <ul id="m-included"></ul>
+        <p class="inc-meta"><span data-i18n="shop.production">Produção</span>: <span id="m-production"></span></p>
+        <p class="inc-meta"><span data-i18n="shop.material">Material</span>: <span id="m-material"></span></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="data.js"></script>
+<script src="i18n.js"></script>
+<script src="shop.js"></script>
+<script src="chat.js"></script>
+</body>
+</html>

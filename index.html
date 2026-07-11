@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OLIVEIRA</title>
+<meta name="description" content="OLIVEIRA — arte de Ivo de Oliveira. Coleções de peças de autor. AURON: arte em acrílico translúcido.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="portal-page">
+
+<div class="grain"></div>
+
+<header class="topbar solid">
+  <a href="index.html" class="wordmark">OLIVEIRA</a>
+  <nav>
+    <a href="index.html#colecoes" class="nav-main" data-i18n="nav.collections">Coleções</a>
+    <a href="loja.html" class="nav-main" data-i18n="nav.shop">Loja</a>
+    <button class="lang" data-lang-toggle aria-label="Idioma / Language">
+      <span data-lang="pt">PT</span><span class="sep">/</span><span data-lang="en">EN</span>
+    </button>
+  </nav>
+</header>
+
+<!-- PORTAL HERO -->
+<section class="portal-hero">
+  <div class="portal-glow"></div>
+  <div class="portal-hero-inner">
+    <p class="eyebrow" data-i18n="portal.eyebrow">Ivo de Oliveira</p>
+    <h1 class="portal-mark">OLIVEIRA</h1>
+    <p class="portal-tagline" data-i18n="portal.tagline">
+      Peças de autor, em coleções. Cada coleção, um mundo próprio.
+    </p>
+    <a class="scroll-down" href="#colecoes" data-i18n="portal.enter">Coleções ↓</a>
+  </div>
+</section>
+
+<!-- COLEÇÕES (renderizadas a partir de data.js) -->
+<section id="colecoes" class="portal-collections">
+  <p class="eyebrow center" data-i18n="portal.collections">Coleções</p>
+  <div id="collections-root" class="collections-grid"></div>
+</section>
+
+<footer class="site-footer">
+  <div class="foot-top">
+    <a href="index.html" class="wordmark">OLIVEIRA</a>
+    <nav class="foot-links">
+      <a href="loja.html" data-i18n="nav.shop">Loja</a>
+      <a href="auron.html" data-i18n="nav.auron">AURON</a>
+      <a href="legal.html" data-i18n="footer.terms">Termos</a>
+      <a href="legal.html" data-i18n="footer.privacy">Privacidade</a>
+      <a href="mailto:ivodeoliveiradrive@gmail.com" data-i18n="footer.contact">Contacto</a>
+    </nav>
+  </div>
+  <div class="foot-bottom">
+    <p data-i18n="footer.rights">© 2026 OLIVEIRA · Ivo de Oliveira. Todos os direitos reservados.</p>
+    <p>byauron.art</p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script src="i18n.js"></script>
+<script src="portal.js"></script>
+<script src="chat.js"></script>
+</body>
+</html>

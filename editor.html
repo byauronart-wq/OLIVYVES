@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editor · OLIVEIRA</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="editor-page">
+
+<header class="ed-bar">
+  <div class="ed-bar-left">
+    <span class="ed-logo">OLIVEIRA</span>
+    <span class="ed-tag">Editor de coleções</span>
+  </div>
+  <div class="ed-bar-actions">
+    <span id="save-state" class="ed-save"></span>
+    <button id="btn-add-col" class="ed-btn primary">+ Nova coleção</button>
+    <button id="btn-preview" class="ed-btn">Pré-ver loja</button>
+    <button id="btn-preview-portal" class="ed-btn">Pré-ver portal</button>
+    <button id="btn-export" class="ed-btn accent">Exportar data.js</button>
+    <button id="btn-reset" class="ed-btn ghost">Repor</button>
+  </div>
+</header>
+
+<main class="ed-main">
+  <div class="ed-intro">
+    <p><strong>Como funciona:</strong> cria e edita coleções aqui — o trabalho fica guardado neste
+    navegador. Usa <em>Pré-ver</em> para ver como fica. Quando estiver pronto, carrega em
+    <em>Exportar data.js</em>: descarrega um ficheiro <code>data.js</code>; substitui o
+    <code>data.js</code> do site por esse e faz o commit/push habitual para publicar.</p>
+    <p class="ed-count-line"><span id="ed-count"></span></p>
+  </div>
+
+  <div id="editor-root"></div>
+
+  <div class="ed-foot">
+    <button id="btn-add-col-2" class="ed-btn primary" onclick="document.getElementById('btn-add-col').click()">+ Nova coleção</button>
+  </div>
+</main>
+
+<script src="data.js"></script>
+<script src="editor.js"></script>
+</body>
+</html>
