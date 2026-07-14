@@ -156,20 +156,20 @@ a{ color:inherit; text-decoration:none; }
   display:flex; align-items:center; justify-content:center;
   overflow:hidden;
 }
-/* ambient colour wash matching the artwork (set via --g1/--g2/--base) */
+/* fundo neutro e uniforme — a única cor na cena é a da própria peça, como
+   numa galeria: parede escura lisa, luz dirigida à obra, nada a competir */
 .scene-bg{
   position:absolute; inset:-12%;
-  background:
-    radial-gradient(38% 46% at 30% 36%, var(--g1), transparent 70%),
-    radial-gradient(44% 54% at 72% 66%, var(--g2), transparent 72%),
-    var(--base, #08070b);
-  filter:blur(18px) saturate(1.08);
-  will-change:transform;
+  background:var(--bg);
 }
-/* fade top & bottom to a common near-black so scenes blend into each other */
+.scene-bg::after{
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(115% 85% at 50% 45%, transparent 45%, rgba(0,0,0,.45) 100%);
+}
+/* fade top & bottom para as cenas se fundirem sem costura */
 .scene::before{
   content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
-  background:linear-gradient(180deg, #08070b 0%, transparent 20%, transparent 80%, #08070b 100%);
+  background:linear-gradient(180deg, var(--bg) 0%, transparent 20%, transparent 80%, var(--bg) 100%);
 }
 .scene-inner{
   position:relative; z-index:2;
@@ -183,11 +183,11 @@ a{ color:inherit; text-decoration:none; }
 .scene.rev .scene-text{ order:1; }
 
 .scene-art-wrap{ position:relative; display:flex; justify-content:center; }
-/* soft colour halo behind the art */
+/* luz neutra e subtil atrás da peça — como um foco de galeria, não um halo de cor */
 .scene-art-wrap::after{
-  content:''; position:absolute; inset:-8% -6%; z-index:-1;
-  background:radial-gradient(circle at 50% 45%, var(--g1), transparent 68%);
-  filter:blur(40px); opacity:.55;
+  content:''; position:absolute; inset:-10% -8%; z-index:-1;
+  background:radial-gradient(circle at 50% 45%, rgba(243,239,233,.09), transparent 70%);
+  filter:blur(46px);
 }
 .scene-art{
   width:100%; max-width:560px;

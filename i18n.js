@@ -48,8 +48,8 @@ const I18N = {
     'piece.05.p': 'Círculo cósmico. Centro em fuga.',
 
     'material.eyebrow': 'O material',
-    'material.title': 'Acrílico translúcido.<br>Sem luz própria — <span>por agora.</span>',
-    'material.copy': 'Cada peça é impressa sobre acrílico translúcido de alta transparência. Não tem retroiluminação própria: vive da luz natural ou artificial da divisão onde é pendurada, mudando subtilmente ao longo do dia. É o primeiro passo de um percurso — a seguir vêm as versões com luz própria (lightbox), e depois, a possibilidade de cada cliente desenhar a sua própria aura.',
+    'material.title': 'Acrílico translúcido.<br>Vive da <span>luz da tua casa.</span>',
+    'material.copy': 'Cada peça é impressa sobre acrílico translúcido de alta transparência. Não tem retroiluminação própria: vive da luz natural ou artificial da divisão onde é pendurada, mudando subtilmente ao longo do dia.',
     'material.f1.h': 'Translúcido',
     'material.f1.p': 'Deixa passar e filtra a luz da divisão — a peça muda com o dia.',
     'material.f2.h': 'Impressão de precisão',
@@ -59,7 +59,7 @@ const I18N = {
 
     'about.eyebrow': 'A coleção',
     'about.title': 'AURON nasce da luz<br>que já existe na tua casa.',
-    'about.copy': 'O nome vem de "aura" — o halo de cor e luz que rodeia algo. É essa a ideia: peças que não impõem uma imagem, mas uma atmosfera. AURON é a primeira coleção OLIV YVES — hoje, peças em acrílico translúcido; a seguir, lightboxes com luz própria; depois, uma loja onde cada cliente gera a sua aura e a vê, em tempo real, pendurada na sua própria divisão.',
+    'about.copy': 'O nome vem de "aura" — o halo de cor e luz que rodeia algo. É essa a ideia: peças que não impõem uma imagem, mas uma atmosfera. AURON é a primeira coleção OLIV YVES, em acrílico translúcido.',
     'about.cta': 'Ver a loja',
 
     'footer.tag': 'byauron.art · © 2026',
@@ -127,8 +127,8 @@ const I18N = {
     'piece.05.p': 'Cosmic circle. Vanishing core.',
 
     'material.eyebrow': 'The material',
-    'material.title': 'Translucent acrylic.<br>No light of its own — <span>for now.</span>',
-    'material.copy': 'Each piece is printed on high-clarity translucent acrylic. It has no backlight of its own: it lives on the natural or artificial light of the room where it hangs, shifting subtly through the day. It is the first step of a journey — next come the self-lit versions (lightbox), and then the possibility for each customer to design their own aura.',
+    'material.title': 'Translucent acrylic.<br>Lives on <span>the light of your home.</span>',
+    'material.copy': 'Each piece is printed on high-clarity translucent acrylic. It has no backlight of its own: it lives on the natural or artificial light of the room where it hangs, shifting subtly through the day.',
     'material.f1.h': 'Translucent',
     'material.f1.p': 'Lets the room light through and filters it — the piece changes with the day.',
     'material.f2.h': 'Precision print',
@@ -138,7 +138,7 @@ const I18N = {
 
     'about.eyebrow': 'The collection',
     'about.title': 'AURON is born from the light<br>already in your home.',
-    'about.copy': 'The name comes from "aura" — the halo of colour and light around something. That is the idea: pieces that impose not an image, but an atmosphere. AURON is the first OLIV YVES collection — today, translucent acrylic pieces; next, self-lit lightboxes; then, a shop where each customer generates their aura and sees it, in real time, hanging in their own room.',
+    'about.copy': 'The name comes from "aura" — the halo of colour and light around something. That is the idea: pieces that impose not an image, but an atmosphere. AURON is the first OLIV YVES collection, in translucent acrylic.',
     'about.cta': 'View the shop',
 
     'footer.tag': 'byauron.art · © 2026',
