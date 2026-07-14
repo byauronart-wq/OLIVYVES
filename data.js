@@ -14,7 +14,7 @@
 
 /* ---- CONFIG global: como se encomenda ---- */
 window.CONFIG = {
-  brand: 'OLIVEIRA',
+  brand: 'OLIV YVES',
   domain: 'byauron.art',
 
   order: {
@@ -106,55 +106,72 @@ window.CATALOG = {
 
       sizes: AURON_SIZES,
 
+      // NOTA: os caminhos das imagens seguem os nomes das pastas em assets/shop/.
+      // Se renomeares uma pasta, actualiza aqui os caminhos dessa peça (ou pede-me).
       pieces: [
         {
           id: 'profundidade',
           name: { pt: 'Profundidade', en: 'Depth' },
           desc: {
-            pt: 'Azul profundo em anel circular, com um núcleo escuro que puxa o olhar para dentro. Quieto e contemplativo.',
-            en: 'Deep blue in a circular ring, with a dark core that draws the eye inward. Quiet and contemplative.',
+            pt: 'Azul profundo em anel, com um núcleo escuro que puxa o olhar para dentro.',
+            en: 'Deep blue in a ring, with a dark core that draws the eye inward.',
           },
           images: [
-            'assets/shop/profundidade-1-front.jpg',
-            'assets/shop/profundidade-2-gallery.jpg',
-            'assets/shop/profundidade-3-room.jpg',
-          ],
-        },
-        {
-          id: 'alvorada',
-          name: { pt: 'Alvorada', en: 'Dawn' },
-          desc: {
-            pt: 'Azul-gelo a abrir para um centro rosa — a cor de um amanhecer, suave sobre qualquer parede.',
-            en: 'Ice-blue opening into a pink core — the colour of daybreak, soft on any wall.',
-          },
-          images: [
-            'assets/shop/alvorada-1-gallery.jpg',
-            'assets/shop/alvorada-2-room.jpg',
+            'assets/shop/deep blue circle/profundidade-1-front.jpg',
+            'assets/shop/deep blue circle/gallery-blue-circle.jpg',
+            'assets/shop/deep blue circle/hero-terracota.jpg',
           ],
         },
         {
           id: 'horizonte',
           name: { pt: 'Horizonte', en: 'Horizon' },
           desc: {
-            pt: 'Um pôr-do-sol contido num retângulo: magenta a arder em laranja, núcleo escuro ao centro.',
-            en: 'A sunset held in a rectangle: magenta burning into orange, a dark core at its centre.',
+            pt: 'Um pôr-do-sol contido num retângulo — magenta a arder em laranja.',
+            en: 'A sunset held in a rectangle — magenta burning into orange.',
           },
           images: [
-            'assets/shop/horizonte-1-front.jpg',
-            'assets/shop/horizonte-2-gallery.jpg',
-            'assets/shop/horizonte-3-room.jpg',
+            'assets/shop/horizontal sunset/horizonte-1-front.jpg',
+            'assets/shop/horizontal sunset/gallery-sunset-horizontal.jpg',
+            'assets/shop/horizontal sunset/office horizontal sunset-horizontal office-room.png',
           ],
         },
         {
-          id: 'penumbra',
-          name: { pt: 'Penumbra', en: 'Penumbra' },
+          id: 'nascente',
+          name: { pt: 'Nascente', en: 'Rising' },
           desc: {
-            pt: 'Violeta e magenta a dissolverem-se em azul — feita para uma divisão que já vive em meia-luz.',
-            en: 'Violet and magenta dissolving into blue — made for a room that already lives in half-light.',
+            pt: 'Sol oval em tons quentes, com auréola violeta. Luz que nasce.',
+            en: 'An oval sun in warm tones, ringed in violet. Rising light.',
           },
           images: [
-            'assets/shop/penumbra-1-front.jpg',
-            'assets/shop/penumbra-2-room.jpg',
+            'assets/shop/ellipse sun/auron_500x700mm_bleed3mm_300dpi_2026-07-13-20-44-04.png',
+            'assets/shop/ellipse sun/terracota_midcentury_wall_2026-07-14-07-21-49.png',
+            'assets/shop/ellipse sun/entrance_persianas_wall_2026-07-13-19-06-22.png',
+          ],
+        },
+        {
+          id: 'cosmica',
+          name: { pt: 'Cósmica', en: 'Cosmic' },
+          desc: {
+            pt: 'Violeta profundo com halo magenta — uma aura cósmica, vertical.',
+            en: 'Deep violet with a magenta halo — a cosmic aura, vertical.',
+          },
+          images: [
+            'assets/shop/cosmic aura/auron_cosmic3.png',
+            'assets/shop/cosmic aura/gallery_moody_wall_2026-07-14-07-18-03.png',
+            'assets/shop/cosmic aura/dramatic_room_wall_2026-07-14-07-14-55.png',
+          ],
+        },
+        {
+          id: 'orbita',
+          name: { pt: 'Órbita', en: 'Orbit' },
+          desc: {
+            pt: 'Círculo cósmico, centro em fuga — azul e violeta em órbita.',
+            en: 'A cosmic circle, its core receding — blue and violet in orbit.',
+          },
+          images: [
+            'assets/shop/cosmic circle/auron_500x500mm_bleed3mm_300dpi_2026-07-04-18-51-25.png',
+            'assets/shop/cosmic circle/gallery-white-wall.jpg',
+            'assets/shop/cosmic circle/gallery-industrial.jpg',
           ],
         },
       ],

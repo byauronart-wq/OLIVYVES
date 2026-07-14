@@ -229,7 +229,7 @@ function buildOrderHref(piece, size, col, lang) {
     return `https://wa.me/${cfg.whatsapp}?text=${encodeURIComponent(msg)}`;
   }
   // email (default e fallback)
-  const subject = `OLIVEIRA — ${piece.name[lang]} (${size.label[lang]})`;
+  const subject = `OLIV YVES — ${piece.name[lang]} (${size.label[lang]})`;
   return `mailto:${cfg.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(msg)}`;
 }
 
