@@ -61,6 +61,7 @@ const I18N = {
     'about.title': 'AURON nasce da luz<br>que já existe na tua casa.',
     'about.copy': 'O nome vem de "aura" — o halo de cor e luz que rodeia algo. É essa a ideia: peças que não impõem uma imagem, mas uma atmosfera. AURON é a primeira coleção OLIV YVES, em acrílico translúcido.',
     'about.cta': 'Ver a loja',
+    'scene.cta': 'Ver na loja →',
 
     'footer.tag': 'byauron.art · © 2026',
     'footer.terms': 'Termos',
@@ -140,6 +141,7 @@ const I18N = {
     'about.title': 'AURON is born from the light<br>already in your home.',
     'about.copy': 'The name comes from "aura" — the halo of colour and light around something. That is the idea: pieces that impose not an image, but an atmosphere. AURON is the first OLIV YVES collection, in translucent acrylic.',
     'about.cta': 'View the shop',
+    'scene.cta': 'View in shop →',
 
     'footer.tag': 'byauron.art · © 2026',
     'footer.terms': 'Terms',

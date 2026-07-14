@@ -34,6 +34,18 @@ function initFilterFromURL() {
   if (col && window.getCollection(col)) ACTIVE_COL = col;
 }
 
+/* ---------- abrir uma peça directamente a partir do link (?col=X&piece=Y) ---------- */
+function openPieceFromURL() {
+  const params = new URLSearchParams(location.search);
+  const pieceId = params.get('piece');
+  if (!pieceId) return;
+  const col = window.getCollection(params.get('col')) || window.CATALOG.collections.find((c) =>
+    c.pieces.some((p) => p.id === pieceId)
+  );
+  const piece = col && col.pieces.find((p) => p.id === pieceId);
+  if (col && piece) openPiece(col, piece);
+}
+
 /* ---------- barra de filtro (uma pastilha por coleção) ---------- */
 function renderFilter() {
   const el = document.getElementById('shop-filter');
@@ -237,6 +249,7 @@ function buildOrderHref(piece, size, col, lang) {
 document.addEventListener('DOMContentLoaded', () => {
   initFilterFromURL();
   renderShop();
+  openPieceFromURL();
 
   document.getElementById('car-prev').addEventListener('click', () => goImg(MODAL.imgIndex - 1));
   document.getElementById('car-next').addEventListener('click', () => goImg(MODAL.imgIndex + 1));

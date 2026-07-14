@@ -26,18 +26,18 @@
 
   var STR = {
     pt: {
-      open: 'Falar connosco', title: 'Fala connosco',
-      intro: 'Dúvidas ou pedidos de comissão? Escreve — respondemos por email.',
+      open: 'Contacto', title: 'Contacto',
+      intro: 'Dúvidas ou pedidos de comissão? Escreve aqui — a resposta chega por email.',
       name: 'Nome', email: 'Email', msg: 'Mensagem', send: 'Enviar',
-      sending: 'A enviar…', ok: 'Obrigado! Recebemos a tua mensagem e respondemos em breve.',
+      sending: 'A enviar…', ok: 'Obrigado! Mensagem recebida — resposta em breve.',
       err: 'Não foi possível enviar. Tenta de novo ou escreve para ' + TO + '.',
       types: ['Dúvida', 'Encomenda', 'Comissão'],
     },
     en: {
-      open: 'Talk to us', title: 'Talk to us',
-      intro: 'Questions or commission requests? Write to us — we reply by email.',
+      open: 'Contact', title: 'Contact',
+      intro: 'Questions or commission requests? Write here — a reply follows by email.',
       name: 'Name', email: 'Email', msg: 'Message', send: 'Send',
-      sending: 'Sending…', ok: 'Thank you! We got your message and will reply soon.',
+      sending: 'Sending…', ok: 'Thank you! Message received — a reply follows soon.',
       err: 'Could not send. Please try again or write to ' + TO + '.',
       types: ['Question', 'Order', 'Commission'],
     },
