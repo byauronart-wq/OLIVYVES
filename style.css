@@ -39,7 +39,7 @@ a{ color:inherit; text-decoration:none; }
   padding:1.6rem clamp(1.2rem, 4vw, 3rem);
   mix-blend-mode:difference;
 }
-.topbar .wordmark{ font-family:var(--serif); font-size:1.3rem; letter-spacing:.12em; }
+.topbar .wordmark{ font-family:'Poppins',var(--sans); font-weight:800; font-size:1.1rem; letter-spacing:.02em; }
 .topbar nav{ display:flex; align-items:center; gap:clamp(1rem,3vw,2.2rem); }
 .topbar nav a{ font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; opacity:.85; }
 .topbar nav a:hover{ opacity:1; }
@@ -257,7 +257,7 @@ footer:not(.site-footer){
   padding:2.2rem clamp(1.2rem,4vw,3rem) 2.6rem;
   border-top:1px solid rgba(243,239,233,.08);
 }
-footer .wordmark{ font-family:var(--serif); font-size:1.1rem; letter-spacing:.1em; }
+footer .wordmark{ font-family:'Poppins',var(--sans); font-weight:800; font-size:1rem; letter-spacing:.02em; }
 footer p{ color:var(--ink-dim); font-size:.8rem; }
 
 /* rich site footer (with legal links) */
@@ -507,30 +507,31 @@ body.modal-open{ overflow:hidden; }
   position:relative; min-height:100svh; display:flex; align-items:center; justify-content:center;
   text-align:center; overflow:hidden; padding:6rem 1.4rem 4rem;
 }
-.portal-glow{
+/* profundidade subtil, sem cor — só um leve escurecimento nos cantos */
+.portal-vignette{
   position:absolute; inset:0; z-index:0;
-  background:
-    radial-gradient(50% 40% at 50% 42%, rgba(217,143,90,.20), transparent 70%),
-    radial-gradient(40% 45% at 70% 75%, rgba(127,123,216,.16), transparent 72%),
-    var(--bg);
+  background:radial-gradient(120% 90% at 50% 45%, transparent 45%, rgba(0,0,0,.32) 100%);
 }
-.portal-hero-inner{ position:relative; z-index:1; max-width:720px; }
+.portal-hero-inner{ position:relative; z-index:1; max-width:900px; }
 .portal-mark{
-  font-family:'Bodoni Moda', Georgia, serif; font-weight:600;
-  font-size:clamp(3.8rem, 14vw, 9.2rem); line-height:.95; letter-spacing:.18em;
-  text-transform:uppercase; margin:1rem 0 2rem;
-  font-style:italic;
+  font-family:'Poppins', var(--sans); font-weight:800;
+  font-size:clamp(2.6rem, 9vw, 5.6rem); line-height:1; letter-spacing:.02em;
+  animation:markIn 1.1s cubic-bezier(.2,.7,.2,1) both;
 }
-.portal-tagline{
-  font-family:var(--serif); font-style:italic;
-  font-size:clamp(1.15rem, 2.4vw, 1.7rem); color:var(--ink-dim); line-height:1.5;
-  max-width:30ch; margin:0 auto 2.4rem;
-}
+@keyframes markIn{ from{ opacity:0; letter-spacing:.3em; } to{ opacity:1; letter-spacing:.02em; } }
 .scroll-down{
-  display:inline-block; font-size:.8rem; letter-spacing:.14em; text-transform:uppercase;
-  color:var(--ink-dim); border-bottom:1px solid rgba(243,239,233,.2); padding-bottom:.3rem;
+  position:absolute; left:50%; bottom:clamp(1.8rem,5vw,3rem); z-index:1;
+  transform:translateX(-50%);
 }
-.scroll-down:hover{ color:var(--ink); }
+.scroll-down span{
+  display:block; width:1px; height:44px; background:var(--ink-dim); opacity:.4;
+  position:relative; overflow:hidden;
+}
+.scroll-down span::after{
+  content:''; position:absolute; left:0; top:-100%; width:100%; height:100%; background:var(--ink);
+  animation:scrollline 2.4s ease-in-out infinite;
+}
+.scroll-down:hover span{ opacity:.7; }
 
 .portal-collections{ padding:clamp(3rem,8vw,6rem) clamp(1.4rem,5vw,4rem) clamp(4rem,8vw,7rem); }
 .eyebrow.center{ text-align:center; margin-bottom:clamp(2rem,5vw,3rem); }
