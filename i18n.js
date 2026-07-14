@@ -31,7 +31,7 @@ const I18N = {
     'hero.sub': 'Cada peça AURON é uma aura de cor, impressa em acrílico translúcido — sem luz própria, ganha vida com a luz da tua divisão.',
     'hero.cta': 'Ver a coleção ↓',
 
-    'statement.body': 'Não pintamos formas.<br>Capturamos <em>atmosferas</em> — gradientes que respiram cor e desaparecem em luz, prontos para acordar consoante a divisão onde vivem.',
+    'statement.body': 'Não formas pintadas.<br><em>Atmosferas</em> capturadas — gradientes que respiram cor e desaparecem em luz, prontos para acordar consoante a divisão onde vivem.',
 
     'gallery.title': 'A coleção',
     'gallery.cta': 'Ir para a loja →',
@@ -53,7 +53,7 @@ const I18N = {
     'material.f1.h': 'Translúcido',
     'material.f1.p': 'Deixa passar e filtra a luz da divisão — a peça muda com o dia.',
     'material.f2.h': 'Impressão de precisão',
-    'material.f2.p': 'Cor fiel, gradientes suaves, sem faixas — pensado para a arte que fazemos.',
+    'material.f2.p': 'Cor fiel, gradientes suaves, sem faixas — a precisão que esta arte exige.',
     'material.f3.h': 'Feito à medida',
     'material.f3.p': 'Cada aura nasce num estúdio de geração próprio — nunca um padrão repetido.',
 
@@ -110,7 +110,7 @@ const I18N = {
     'hero.sub': 'Every AURON piece is an aura of colour, printed on translucent acrylic — with no light of its own, it comes alive with the light of your room.',
     'hero.cta': 'See the collection ↓',
 
-    'statement.body': "We don't paint shapes.<br>We capture <em>atmospheres</em> — gradients that breathe colour and vanish into light, ready to wake with the room they live in.",
+    'statement.body': 'Not painted shapes.<br><em>Captured atmospheres</em> — gradients that breathe colour and vanish into light, ready to wake with the room they live in.',
 
     'gallery.title': 'The collection',
     'gallery.cta': 'Go to the shop →',
@@ -132,9 +132,9 @@ const I18N = {
     'material.f1.h': 'Translucent',
     'material.f1.p': 'Lets the room light through and filters it — the piece changes with the day.',
     'material.f2.h': 'Precision print',
-    'material.f2.p': 'True colour, smooth gradients, no banding — built for the art we make.',
+    'material.f2.p': 'True colour, smooth gradients, no banding — the precision this art demands.',
     'material.f3.h': 'Made to measure',
-    'material.f3.p': 'Each aura is born in our own generative studio — never a repeated pattern.',
+    'material.f3.p': 'Each aura is born in a dedicated generative studio — never a repeated pattern.',
 
     'about.eyebrow': 'The collection',
     'about.title': 'AURON is born from the light<br>already in your home.',
