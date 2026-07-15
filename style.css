@@ -141,87 +141,72 @@ a{ color:inherit; text-decoration:none; }
 }
 .statement em{ font-style:italic; color:var(--ink); }
 
-/* ---------- gallery (immersive scenes) ---------- */
-.gallery{ padding:0; }
+/* ---------- gallery (sala clara — ficha de museu) ----------
+   Zona clara aninhada num site escuro: entra-se de uma secção escura (statement)
+   para uma "sala iluminada" (a coleção) e volta-se ao escuro (material/sobre).
+   Reutiliza os 2 tons já existentes na marca, só invertidos: fundo = var(--ink)
+   (o mesmo branco-quente usado como texto no resto do site), texto = var(--bg)
+   (o mesmo quase-preto usado como fundo no resto do site). */
+.gallery{
+  position:relative; background:var(--ink); color:var(--bg);
+  padding:0;
+}
+.gallery::before{
+  content:''; position:absolute; top:0; left:0; right:0; height:16vh; z-index:0; pointer-events:none;
+  background:linear-gradient(180deg, var(--bg) 0%, transparent 100%);
+}
+.gallery::after{
+  content:''; position:absolute; bottom:0; left:0; right:0; height:16vh; z-index:0; pointer-events:none;
+  background:linear-gradient(0deg, var(--bg-2) 0%, transparent 100%);
+}
 .gallery-title{
-  text-align:center; padding:clamp(4rem,9vw,7rem) 1.2rem clamp(1rem,3vw,2rem);
+  position:relative; z-index:1; text-align:center;
+  padding:clamp(7rem,15vw,10.5rem) 1.2rem clamp(2rem,5vw,3rem);
 }
 .gallery-title h2{
   font-family:var(--serif); font-weight:500; font-size:clamp(2rem,5vw,3.2rem);
+  color:var(--bg);
 }
 
-/* each artwork = a full-height, colour-washed scene */
+/* cada peça = uma composição centrada, tipo poster de museu — imagem modesta,
+   muito espaço à volta, legenda por baixo */
 .scene{
-  position:relative; min-height:100svh;
-  display:flex; align-items:center; justify-content:center;
-  overflow:hidden;
+  position:relative; z-index:1; min-height:100svh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center;
+  padding:5rem clamp(1.4rem,6vw,4rem);
 }
-/* fundo neutro e uniforme — a única cor na cena é a da própria peça, como
-   numa galeria: parede escura lisa, luz dirigida à obra, nada a competir */
-.scene-bg{
-  position:absolute; inset:-12%;
-  background:var(--bg);
-}
-.scene-bg::after{
-  content:''; position:absolute; inset:0;
-  background:radial-gradient(115% 85% at 50% 45%, transparent 45%, rgba(0,0,0,.45) 100%);
-}
-/* fade top & bottom para as cenas se fundirem sem costura */
-.scene::before{
-  content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
-  background:linear-gradient(180deg, var(--bg) 0%, transparent 20%, transparent 80%, var(--bg) 100%);
-}
-.scene-inner{
-  position:relative; z-index:2;
-  width:100%; max-width:1180px;
-  padding:6rem clamp(1.4rem,5vw,4rem);
-  display:grid; grid-template-columns:1.05fr .95fr; align-items:center;
-  gap:clamp(2rem,5vw,4.5rem);
-  perspective:1600px;
-}
-.scene.rev .scene-art-wrap{ order:2; }
-.scene.rev .scene-text{ order:1; }
-
-.scene-art-wrap{ position:relative; display:flex; justify-content:center; }
-/* luz neutra e subtil atrás da peça — como um foco de galeria, não um halo de cor */
-.scene-art-wrap::after{
-  content:''; position:absolute; inset:-10% -8%; z-index:-1;
-  background:radial-gradient(circle at 50% 45%, rgba(243,239,233,.09), transparent 70%);
-  filter:blur(46px);
-}
+.scene-art-wrap{ margin-bottom:2.2rem; }
 .scene-art{
-  display:block; width:100%; max-width:560px;
+  display:block; width:100%; max-width:420px; margin:0 auto;
   aspect-ratio:var(--ar, 4/5);
-  border-radius:10px; overflow:hidden;
-  box-shadow:0 50px 90px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.04);
-  transform-style:preserve-3d; will-change:transform;
-  cursor:pointer;
+  border-radius:6px; overflow:hidden; cursor:pointer;
+  box-shadow:0 34px 64px -22px rgba(40,32,24,.28), 0 0 0 1px rgba(11,10,13,.05);
+  transition:transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .5s;
 }
-.scene-art img{
-  width:100%; height:100%; object-fit:cover; display:block;
-  transition:transform .5s cubic-bezier(.2,.7,.2,1), filter .5s;
-}
-.scene-art:hover img{ transform:scale(1.045); filter:brightness(1.05); }
+.scene-art:hover{ transform:translateY(-4px); box-shadow:0 44px 74px -22px rgba(40,32,24,.34), 0 0 0 1px rgba(11,10,13,.06); }
+.scene-art img{ width:100%; height:100%; object-fit:cover; display:block; }
 
-.scene-text{ max-width:38ch; }
+.scene-text{ max-width:36ch; }
 .scene-text .num{
-  display:block; font-family:var(--serif); font-style:italic;
-  color:var(--ink); font-size:1.05rem; margin-bottom:.9rem; opacity:.7;
+  display:block; font-size:.72rem; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(11,10,13,.5); margin-bottom:.8rem;
 }
 .scene-text h3{
   font-family:var(--serif); font-weight:500;
-  font-size:clamp(2rem,4.2vw,3.2rem); line-height:1.05; margin-bottom:1.1rem;
+  font-size:clamp(1.7rem,3.4vw,2.4rem); line-height:1.1; margin-bottom:.7rem;
+  color:var(--bg);
 }
 .scene-text p{
-  color:rgba(243,239,233,.82); font-weight:300; line-height:1.7; font-size:1.05rem;
+  color:rgba(11,10,13,.62); font-weight:400; line-height:1.65; font-size:.98rem;
 }
 .scene-cta{
-  display:inline-block; margin-top:1.4rem;
-  font-size:.8rem; letter-spacing:.08em; text-transform:uppercase;
-  color:var(--ink-dim); border-bottom:1px solid rgba(243,239,233,.2); padding-bottom:.25rem;
+  display:inline-block; margin-top:1.3rem;
+  font-size:.76rem; letter-spacing:.08em; text-transform:uppercase;
+  color:rgba(11,10,13,.55); border-bottom:1px solid rgba(11,10,13,.22); padding-bottom:.22rem;
   transition:color .2s, border-color .2s;
 }
-.scene-cta:hover{ color:var(--ink); border-color:rgba(243,239,233,.6); }
+.scene-cta:hover{ color:var(--bg); border-color:rgba(11,10,13,.5); }
 
 /* ---------- material ---------- */
 .material{
@@ -358,7 +343,7 @@ footer p{ color:var(--ink-dim); font-size:.8rem; }
 }
 [data-reveal].in{ opacity:1; transform:translateY(0); }
 
-.gallery-cta{ text-align:center; padding:2rem clamp(1.2rem,4vw,3rem) 2rem; }
+.gallery-cta{ position:relative; z-index:1; text-align:center; padding:1rem clamp(1.2rem,4vw,3rem) clamp(4rem,9vw,6rem); }
 
 /* ============================================================
    LOJA
@@ -487,14 +472,8 @@ body.modal-open{ overflow:hidden; }
   .carousel{ min-height:44svh; }
 }
 @media (max-width: 860px){
-  .scene-inner{
-    grid-template-columns:1fr; gap:2rem; padding:5rem clamp(1.4rem,5vw,4rem);
-    text-align:center;
-  }
-  .scene.rev .scene-art-wrap{ order:1; }
-  .scene.rev .scene-text{ order:2; }
   .scene-text{ max-width:none; margin:0 auto; }
-  .scene-art{ max-width:420px; }
+  .scene-art{ max-width:340px; }
   .material-grid{ grid-template-columns:1fr; gap:2rem; }
   /* keep the two main links + language toggle; hide the longer ones */
   .topbar nav a{ display:none; }

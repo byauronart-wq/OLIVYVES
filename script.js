@@ -46,36 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- gallery scenes: 3D angle shift + background drift on scroll ---
-  document.querySelectorAll('.scene').forEach((scene, i) => {
-    const art = scene.querySelector('.scene-art');
-    const bg = scene.querySelector('.scene-bg');
-    const dir = i % 2 === 0 ? 1 : -1; // alternate the turn direction per scene
-
-    if (art && !prefersReduced) {
-      // the artwork turns through the viewer as it passes the centre of the screen
-      gsap.fromTo(art,
-        { rotateY: 18 * dir, rotateX: 7, y: 70, scale: 0.9 },
-        {
-          rotateY: -18 * dir, rotateX: -5, y: -70, scale: 1,
-          ease: 'none',
-          scrollTrigger: { trigger: scene, start: 'top bottom', end: 'bottom top', scrub: true },
-        }
-      );
-    }
-
-    if (bg) {
-      // the colour wash drifts slower + breathes, so the background feels alive
-      gsap.fromTo(bg,
-        { scale: 1.16, yPercent: prefersReduced ? 0 : -5 },
-        {
-          scale: 1, yPercent: prefersReduced ? 0 : 5,
-          ease: 'none',
-          scrollTrigger: { trigger: scene, start: 'top bottom', end: 'bottom top', scrub: true },
-        }
-      );
-    }
-  });
+  // gallery scenes (a sala clara) usam o mesmo fade-up simples de [data-reveal]
+  // que o resto do site — o tilt 3D dramático de antes não combinava com o
+  // tom mais sereno de "ficha de museu" da versão clara.
 
   ScrollTrigger.refresh();
 });
