@@ -144,7 +144,6 @@ window.CATALOG = {
           },
           images: [
             'assets/shop/ellipse sun/auron_500x700mm_bleed3mm_300dpi_2026-07-13-20-44-04.png',
-            'assets/shop/ellipse sun/terracota_midcentury_wall_2026-07-14-07-21-49.png',
             'assets/shop/ellipse sun/entrance_persianas_wall_2026-07-13-19-06-22.png',
           ],
         },
