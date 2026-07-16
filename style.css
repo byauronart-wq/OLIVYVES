@@ -364,7 +364,30 @@ footer p{ color:var(--ink-dim); font-size:.8rem; }
 /* ============================================================
    LOJA
    ============================================================ */
-.shop-page{ background:var(--bg); }
+.shop-page{ background:var(--bg); position:relative; }
+/* aura ambiente, muito subtil — a mesma sensação de "gradiente vivo" das peças,
+   nunca um movimento óbvio; só se nota ao fim de alguns segundos a olhar. */
+.shop-page::before{
+  content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(217,143,90,.10), transparent 42%),
+    radial-gradient(circle at 82% 18%, rgba(127,123,216,.09), transparent 45%),
+    radial-gradient(circle at 40% 88%, rgba(217,143,90,.07), transparent 48%);
+  background-repeat:no-repeat;
+  animation: shopAura 52s ease-in-out infinite alternate;
+}
+@keyframes shopAura{
+  0%{ background-position: 20% 25%, 82% 18%, 40% 88%; }
+  100%{ background-position: 34% 40%, 64% 34%, 58% 66%; }
+}
+@media (prefers-reduced-motion: reduce){
+  .shop-page::before{ animation:none; }
+}
+
+/* scroll-driven snapping do catálogo — "proximity" (não "mandatory") para
+   parar suavemente perto de cada secção sem travar o scroll normal a meio. */
+html:has(body.shop-page){ scroll-snap-type: y proximity; }
+.shop-head, .collection{ scroll-snap-align: start; }
 
 .shop-head{
   padding:clamp(7rem,14vw,9rem) clamp(1.2rem,4vw,3rem) clamp(2.5rem,6vw,4rem);
@@ -437,7 +460,7 @@ body.modal-open{ overflow:hidden; }
 .carousel{ position:relative; flex:1; overflow:hidden; border-radius:6px; min-height:320px; }
 .carousel-track{ display:flex; height:100%; transition:transform .5s cubic-bezier(.2,.7,.2,1); }
 .car-slide{ min-width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
-.car-slide img{ width:100%; height:100%; object-fit:contain; }
+.car-slide img{ width:100%; height:100%; object-fit:cover; }
 .car-arrow{
   position:absolute; top:50%; transform:translateY(-50%);
   width:42px; height:42px; border-radius:50%;
@@ -503,6 +526,19 @@ body.modal-open{ overflow:hidden; }
    PORTAL OLIVEIRA (entrada)
    ============================================================ */
 .portal-page{ background:var(--bg); }
+
+/* cursor aura — brush suave que segue o rato (ver portal-cursor.js) */
+body.aura-cursor-active{ cursor:none; }
+.aura-cursor{
+  position:fixed; top:0; left:0; width:150px; height:150px; margin:-75px 0 0 -75px;
+  border-radius:50%; pointer-events:none; z-index:400;
+  background:radial-gradient(circle, rgba(217,143,90,.55) 0%, rgba(127,123,216,.38) 55%, transparent 75%);
+  filter:blur(20px);
+  mix-blend-mode:screen;
+  opacity:0; transition:opacity .3s ease;
+  will-change:transform;
+}
+.aura-cursor.on{ opacity:1; }
 
 /* small collection tag next to the OLIVEIRA wordmark */
 .collection-tag{

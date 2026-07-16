@@ -92,17 +92,19 @@ window.CATALOG = {
 
       // ficha técnica partilhada por todas as peças da coleção
       material: {
-        pt: 'Acrílico translúcido 5 mm, impressão UV.',
-        en: 'Translucent acrylic 5 mm, UV print.',
+        pt: 'Acrílico translúcido 5 mm, impressão UV. Não inclui LED — não é iluminada.',
+        en: 'Translucent acrylic 5 mm, UV print. Does not include LED — not illuminated.',
       },
       productionTime: { pt: '2 a 3 semanas', en: '2 to 3 weeks' },
       included: {
         pt: [
+          'Não inclui LED — não é iluminada; vive da luz natural/artificial da divisão',
           'Placa em acrílico translúcido de 5 mm, impressão UV',
           'Sistema de suspensão (standoffs, a ~16 mm da parede)',
           'Envio para todo o país',
         ],
         en: [
+          'Does not include LED — not illuminated; lives on the room\'s natural or artificial light',
           'Translucent 5 mm acrylic plate, UV print',
           'Mounting hardware (standoffs, ~16 mm off the wall)',
           'Nationwide shipping',
