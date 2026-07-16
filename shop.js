@@ -5,7 +5,7 @@
    Encomenda via window.CONFIG.order (whatsapp / email / stripe).
    ============================================================ */
 
-const money = (n) => '€' + n;
+const money = (n) => Currency.format(n);
 
 /* Pré-visualização de rascunho vinda do editor:
    loja.html?draft=1 usa o catálogo guardado no browser pelo editor. */
@@ -84,9 +84,9 @@ function renderShop() {
         <div class="piece-grid"></div>
       `;
       const grid = section.querySelector('.piece-grid');
-      const fromPrice = Math.min(...col.sizes.map((s) => s.price));
 
       col.pieces.forEach((piece) => {
+        const fromPrice = Math.min(...piece.sizes.map((s) => s.price));
         const card = document.createElement('button');
         card.className = 'piece-card';
         card.setAttribute('data-reveal', '');
@@ -151,10 +151,6 @@ function fillModal() {
   document.getElementById('m-name').textContent = piece.name[lang];
   document.getElementById('m-desc').textContent = piece.desc[lang];
 
-  // edição limitada
-  const ed = document.getElementById('m-edition');
-  ed.textContent = col.edition ? t('shop.edition_of').replace('{n}', col.edition) : '';
-
   // carrossel
   const track = document.getElementById('car-track');
   track.innerHTML = piece.images
@@ -175,7 +171,7 @@ function fillModal() {
 
   // tamanhos
   const sizesEl = document.getElementById('m-sizes');
-  sizesEl.innerHTML = col.sizes
+  sizesEl.innerHTML = piece.sizes
     .map((s, i) => `<button class="size-opt${i === 0 ? ' on' : ''}" data-i="${i}">${s.label[lang]}</button>`)
     .join('');
   sizesEl.querySelectorAll('.size-opt').forEach((b) =>
@@ -201,48 +197,33 @@ function goImg(i) {
 }
 
 function selectSize(i) {
-  const lang = getLang();
-  const { piece, collection: col } = MODAL;
+  const { piece } = MODAL;
   MODAL.sizeIndex = i;
   document.querySelectorAll('#m-sizes .size-opt').forEach((b, idx) =>
     b.classList.toggle('on', idx === i)
   );
-  const size = col.sizes[i];
+  const size = piece.sizes[i];
   document.getElementById('m-price').textContent = money(size.price);
-
-  // nota do sinal (depósito)
-  const dep = window.CONFIG.order.depositPct;
-  const depEl = document.getElementById('m-deposit');
-  if (dep) {
-    const val = Math.round(size.price * dep / 100);
-    depEl.textContent = t('shop.deposit_hint').replace('{pct}', dep).replace('{val}', money(val));
-  } else depEl.textContent = '';
-
-  // link/estado do botão de encomenda
-  const order = document.getElementById('m-order');
-  order.href = buildOrderHref(piece, size, col, lang);
 }
 
-/* ---------- construir o destino do botão "Encomendar" ---------- */
-function buildOrderHref(piece, size, col, lang) {
-  const cfg = window.CONFIG.order;
-  const line1 = lang === 'pt' ? 'Olá! Gostava de encomendar:' : "Hi! I'd like to order:";
-  const msg =
-    `${line1}\n` +
-    `• ${piece.name[lang]} — ${col.name}\n` +
-    `• ${size.label[lang]} — ${money(size.price)}`;
-
-  // Stripe: link do tamanho escolhido (ou geral), se existir
-  if (cfg.mode === 'stripe' && (size.stripe || cfg.stripeLink)) {
-    return size.stripe || cfg.stripeLink;
-  }
-  // WhatsApp se houver número; caso contrário cai para email
-  if (cfg.mode === 'whatsapp' && cfg.whatsapp) {
-    return `https://wa.me/${cfg.whatsapp}?text=${encodeURIComponent(msg)}`;
-  }
-  // email (default e fallback)
-  const subject = `OLIV YVES — ${piece.name[lang]} (${size.label[lang]})`;
-  return `mailto:${cfg.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(msg)}`;
+/* ---------- adicionar a peça escolhida (tamanho activo) ao carrinho ---------- */
+function addModalToCart() {
+  const lang = getLang();
+  const { piece, collection: col, sizeIndex } = MODAL;
+  if (!piece) return;
+  const size = piece.sizes[sizeIndex];
+  Cart.add({
+    colId: col.id,
+    colName: col.name,
+    pieceId: piece.id,
+    pieceName: piece.name[lang],
+    sizeId: size.id,
+    sizeLabel: size.label[lang],
+    price: size.price,
+    image: piece.images[0],
+  });
+  closePiece();
+  openCart();
 }
 
 /* ---------- ligações ---------- */
@@ -257,6 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('#piece-modal [data-close]').forEach((el) =>
     el.addEventListener('click', closePiece)
   );
+  document.getElementById('m-add-cart').addEventListener('click', addModalToCart);
   document.addEventListener('keydown', (e) => {
     if (document.getElementById('piece-modal').hidden) return;
     if (e.key === 'Escape') closePiece();

@@ -62,7 +62,6 @@ function newCollection() {
     description: { pt: '', en: '' },
     theme: { accent: '#d98f5a' },
     material: { pt: '', en: '' },
-    edition: 25,
     productionTime: { pt: '2 a 3 semanas', en: '2 to 3 weeks' },
     included: { pt: [], en: [] },
     sizes: clone(DEFAULT_SIZES),
@@ -240,7 +239,6 @@ function buildDataJs() {
     mode: ${JSON.stringify(o.mode || 'whatsapp')},            // 'whatsapp' | 'email' | 'stripe'
     whatsapp: ${JSON.stringify(o.whatsapp || '')},        // nº internacional só dígitos; vazio = usa email
     email: ${JSON.stringify(o.email || '')},
-    depositPct: ${Number(o.depositPct) || 0},             // sinal %
     stripeLink: ${JSON.stringify(o.stripeLink || '')},
   },
   chat: {

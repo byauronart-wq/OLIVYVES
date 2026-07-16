@@ -19,15 +19,45 @@
   <nav>
     <a href="index.html#colecoes" class="nav-main" data-i18n="nav.collections">Coleções</a>
     <a href="loja.html" class="nav-main" data-i18n="nav.shop">Loja</a>
+    <button class="currency" data-currency-toggle aria-label="Moeda / Currency">
+      <span data-cur="EUR">EUR</span><span class="sep">/</span><span data-cur="USD">USD</span>
+    </button>
     <button class="lang" data-lang-toggle aria-label="Idioma / Language">
       <span data-lang="pt">PT</span><span class="sep">/</span><span data-lang="en">EN</span>
+    </button>
+    <button class="cart-btn" data-cart-open aria-label="Carrinho / Cart">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h2l2.2 11.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 9H6"/><circle cx="10" cy="21" r="1.4" fill="currentColor" stroke="none"/><circle cx="17" cy="21" r="1.4" fill="currentColor" stroke="none"/></svg>
+      <span class="cart-badge" data-cart-count hidden>0</span>
     </button>
   </nav>
 </header>
 
+<!-- CARRINHO -->
+<div id="cart-drawer" class="cart-drawer" hidden>
+  <div class="cart-backdrop" data-close></div>
+  <div class="cart-panel" role="dialog" aria-modal="true">
+    <div class="cart-head">
+      <h2 data-i18n="cart.title">Carrinho</h2>
+      <button class="modal-x" data-close aria-label="Fechar / Close">×</button>
+    </div>
+    <div class="cart-list" id="cart-list"></div>
+    <div class="cart-foot">
+      <div class="cart-totals">
+        <div class="cart-total-row">
+          <span data-i18n="cart.subtotal">Subtotal</span>
+          <span id="cart-subtotal">—</span>
+        </div>
+      </div>
+      <button class="cta cta-order" id="cart-checkout" data-i18n="cart.checkout" disabled>Finalizar encomenda</button>
+    </div>
+  </div>
+</div>
+
 <!-- HERO -->
 <section class="hero" id="top">
-  <div class="hero-bg" style="background-image:url('assets/gallery/deep blue circle/hero-terracota.jpg')"></div>
+  <video class="hero-bg" autoplay muted loop playsinline poster="assets/gallery/deep blue circle/hero-terracota.jpg">
+    <source src="assets/video/hero-auron.mp4" type="video/mp4">
+  </video>
   <div class="hero-veil"></div>
   <div class="hero-content">
     <p class="eyebrow" data-reveal data-i18n="hero.eyebrow">Coleção AURON · acrílico translúcido</p>
@@ -181,6 +211,8 @@
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
 <script src="data.js"></script>
 <script src="i18n.js"></script>
+<script src="cart.js"></script>
+<script src="checkout.js"></script>
 <script src="script.js"></script>
 <script src="chat.js"></script>
 </body>

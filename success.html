@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OLIV YVES — Encomenda confirmada</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..48,400;0,9..48,500;0,9..48,600;0,9..48,700;1,9..48,400&family=Poppins:wght@700;800;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="shop-page">
+
+<div class="grain"></div>
+
+<header class="topbar solid">
+  <a href="index.html" class="wordmark">OLIV YVES</a>
+  <nav>
+    <button class="lang" data-lang-toggle aria-label="Idioma / Language">
+      <span data-lang="pt">PT</span><span class="sep">/</span><span data-lang="en">EN</span>
+    </button>
+  </nav>
+</header>
+
+<main class="order-status">
+  <p class="order-status-icon">✓</p>
+  <h1 data-i18n="checkout.success_title">Encomenda confirmada</h1>
+  <p data-i18n="checkout.success_body">Obrigado! Recebemos o teu pagamento. Vais receber um email de confirmação em breve com os próximos passos da produção.</p>
+  <a class="cta" href="loja.html" data-i18n="checkout.back_shop">Voltar à loja</a>
+</main>
+
+<script src="data.js"></script>
+<script src="i18n.js"></script>
+<script src="cart.js"></script>
+<script>
+  // o pagamento foi concluído — esvazia o carrinho guardado no browser
+  document.addEventListener('DOMContentLoaded', () => { Cart.clear(); });
+</script>
+</body>
+</html>

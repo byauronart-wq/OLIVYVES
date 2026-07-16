@@ -18,20 +18,20 @@ window.CONFIG = {
   domain: 'byauron.art',
 
   order: {
-    // modo do botão "Encomendar": 'whatsapp' | 'email' | 'stripe'
-    mode: 'whatsapp',
-
-    // Nº de WhatsApp (formato internacional, só dígitos, ex: '351912345678').
-    // Enquanto estiver vazio, o botão usa automaticamente o email abaixo.
-    whatsapp: '',
-
     email: 'ivodeoliveiradrive@gmail.com',
 
-    // Encomenda por medida = sinal (%) para arrancar a produção.
-    depositPct: 50,
+    // URL da função serverless que cria a sessão de checkout Stripe
+    // (ver checkout-api/README.md para o deploy). Enquanto estiver vazio,
+    // o botão "Finalizar encomenda" usa um email de recurso com o carrinho completo.
+    checkoutApi: '',
+  },
 
-    // (stripe) — só usado se mode === 'stripe'. Deixar vazio até haver conta.
-    stripeLink: '',
+  // Preços do catálogo estão sempre em EUR. USD é só para mostrar o preço ao
+  // cliente — o valor cobrado a sério é sempre calculado no servidor (checkout-api/).
+  currency: {
+    base: 'EUR',
+    rates: { EUR: 1, USD: 1.08 }, // atualizar à mão de vez em quando
+    symbols: { EUR: '€', USD: '$' },
   },
 
   // Chat / mensagens.
@@ -48,16 +48,22 @@ window.CONFIG = {
   },
 };
 
-/* ---- Tamanhos partilhados (placa de acrílico, formato A) ---- */
-/* Preços de referência do brief — confirmar antes de publicar. */
-/* stripe: (opcional) link de pagamento Stripe deste tamanho. Cria em
-   dashboard.stripe.com → Payment Links, cola o link aqui, e põe
-   CONFIG.order.mode = 'stripe' para o botão levar direto ao pagamento.
-   Vazio = usa WhatsApp/email. */
-const AURON_SIZES = [
-  { id: 'a4', label: { pt: 'A4 · 21 × 29,7 cm', en: 'A4 · 21 × 29.7 cm' }, price: 45, stripe: '' },
-  { id: 'a3', label: { pt: 'A3 · 29,7 × 42 cm', en: 'A3 · 29.7 × 42 cm' }, price: 69, stripe: '' },
-  { id: 'a2', label: { pt: 'A2 · 42 × 59,4 cm', en: 'A2 · 42 × 59.4 cm' }, price: 99, stripe: '' },
+/* ---- Tamanhos por corte de placa (acrílico cristal 5mm, corte e arestas polidas) ----
+   Cada peça oferece só os tamanhos do corte que combina com a sua forma:
+   retangular (Horizonte, Cósmica), elipse (Nascente), redonda (Profundidade, Órbita).
+   Preços de venda (o custo do fornecedor não é o preço mostrado ao cliente). */
+const RECT_SIZES = [
+  { id: 'rect-70x50', label: { pt: '70 × 50 cm', en: '70 × 50 cm' }, price: 279 },
+  { id: 'rect-57x80', label: { pt: '57 × 80 cm', en: '57 × 80 cm' }, price: 349 },
+  { id: 'rect-100x75', label: { pt: '100 × 75 cm', en: '100 × 75 cm' }, price: 449 },
+];
+const ELLIPSE_SIZES = [
+  { id: 'elipse-100x60', label: { pt: 'Elipse 100 × 60 cm', en: 'Ellipse 100 × 60 cm' }, price: 399 },
+  { id: 'elipse-70x40', label: { pt: 'Elipse 70 × 40 cm', en: 'Ellipse 70 × 40 cm' }, price: 279 },
+];
+const ROUND_SIZES = [
+  { id: 'redonda-90', label: { pt: 'Redonda · Ø 90 cm', en: 'Round · Ø 90 cm' }, price: 499 },
+  { id: 'redonda-50', label: { pt: 'Redonda · Ø 50 cm', en: 'Round · Ø 50 cm' }, price: 249 },
 ];
 
 /* ---- O catálogo ---- */
@@ -89,7 +95,6 @@ window.CATALOG = {
         pt: 'Acrílico translúcido 5 mm, impressão UV.',
         en: 'Translucent acrylic 5 mm, UV print.',
       },
-      edition: 25,                      // edição limitada (nº de exemplares por peça)
       productionTime: { pt: '2 a 3 semanas', en: '2 to 3 weeks' },
       included: {
         pt: [
@@ -103,8 +108,6 @@ window.CATALOG = {
           'Nationwide shipping',
         ],
       },
-
-      sizes: AURON_SIZES,
 
       // NOTA: os caminhos das imagens seguem os nomes das pastas em assets/shop/.
       // Se renomeares uma pasta, actualiza aqui os caminhos dessa peça (ou pede-me).
@@ -121,6 +124,7 @@ window.CATALOG = {
             'assets/shop/deep blue circle/gallery-blue-circle.jpg',
             'assets/shop/deep blue circle/hero-terracota.jpg',
           ],
+          sizes: ROUND_SIZES,
         },
         {
           id: 'horizonte',
@@ -134,6 +138,7 @@ window.CATALOG = {
             'assets/shop/horizontal sunset/gallery-sunset-horizontal.jpg',
             'assets/shop/horizontal sunset/office horizontal sunset-horizontal office-room.png',
           ],
+          sizes: RECT_SIZES,
         },
         {
           id: 'nascente',
@@ -146,6 +151,7 @@ window.CATALOG = {
             'assets/shop/ellipse sun/auron_500x700mm_bleed3mm_300dpi_2026-07-13-20-44-04.png',
             'assets/shop/ellipse sun/entrance_persianas_wall_2026-07-13-19-06-22.png',
           ],
+          sizes: ELLIPSE_SIZES,
         },
         {
           id: 'cosmica',
@@ -159,6 +165,7 @@ window.CATALOG = {
             'assets/shop/cosmic aura/gallery_moody_wall_2026-07-14-07-18-03.png',
             'assets/shop/cosmic aura/dramatic_room_wall_2026-07-14-07-14-55.png',
           ],
+          sizes: RECT_SIZES,
         },
         {
           id: 'orbita',
@@ -172,6 +179,7 @@ window.CATALOG = {
             'assets/shop/cosmic circle/gallery-white-wall.jpg',
             'assets/shop/cosmic circle/gallery-industrial.jpg',
           ],
+          sizes: ROUND_SIZES,
         },
       ],
     },
