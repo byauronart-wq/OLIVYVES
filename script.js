@@ -3,6 +3,23 @@
 document.addEventListener('DOMContentLoaded', () => {
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // --- garantir autoplay do vídeo do hero em mobile ---
+  // Safari/iOS por vezes ignora o atributo autoplay (ex: Modo de Poupança de Dados,
+  // Baixa Energia) e mostra o botão de play nativo. Forçamos o play aqui e voltamos
+  // a tentar no primeiro toque/scroll e sempre que a página volta a ficar visível.
+  const heroVideo = document.querySelector('video.hero-bg');
+  if (heroVideo) {
+    heroVideo.muted = true;
+    const tryPlayHero = () => heroVideo.play().catch(() => {});
+    tryPlayHero();
+    ['touchstart', 'click', 'scroll'].forEach((evt) =>
+      document.addEventListener(evt, tryPlayHero, { once: true, passive: true })
+    );
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') tryPlayHero();
+    });
+  }
+
   // --- smooth scroll ---
   let lenis;
   if (!prefersReduced && window.Lenis) {
