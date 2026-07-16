@@ -364,21 +364,25 @@ footer p{ color:var(--ink-dim); font-size:.8rem; }
 /* ============================================================
    LOJA
    ============================================================ */
-.shop-page{ background:var(--bg); position:relative; }
-/* aura ambiente, muito subtil — a mesma sensação de "gradiente vivo" das peças,
-   nunca um movimento óbvio; só se nota ao fim de alguns segundos a olhar. */
+.shop-page{ background:var(--bg); position:relative; z-index:0; }
+/* aura ambiente — o mesmo "gradiente vivo" das peças, a deslocar-se devagar
+   pelo fundo. Visível ao olhar, mas sem cortes nem contornos duros.
+   z-index:0 no .shop-page cria um contexto de stacking próprio, para que o
+   z-index:-1 aqui fique atrás do CONTEÚDO mas à FRENTE do fundo sólido do body
+   (sem isto, ficava tapado pelo próprio background:var(--bg) do body). */
 .shop-page::before{
   content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
   background:
-    radial-gradient(circle at 20% 25%, rgba(217,143,90,.10), transparent 42%),
-    radial-gradient(circle at 82% 18%, rgba(127,123,216,.09), transparent 45%),
-    radial-gradient(circle at 40% 88%, rgba(217,143,90,.07), transparent 48%);
+    radial-gradient(circle at 20% 25%, rgba(217,143,90,.32), transparent 55%),
+    radial-gradient(circle at 82% 18%, rgba(127,123,216,.28), transparent 58%),
+    radial-gradient(circle at 40% 88%, rgba(217,143,90,.24), transparent 60%);
   background-repeat:no-repeat;
-  animation: shopAura 52s ease-in-out infinite alternate;
+  mix-blend-mode:screen;
+  animation: shopAura 26s ease-in-out infinite alternate;
 }
 @keyframes shopAura{
   0%{ background-position: 20% 25%, 82% 18%, 40% 88%; }
-  100%{ background-position: 34% 40%, 64% 34%, 58% 66%; }
+  100%{ background-position: 42% 46%, 56% 40%, 64% 60%; }
 }
 @media (prefers-reduced-motion: reduce){
   .shop-page::before{ animation:none; }
