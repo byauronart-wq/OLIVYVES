@@ -148,31 +148,42 @@ a{ color:inherit; text-decoration:none; }
    (o mesmo branco-quente usado como texto no resto do site), texto = var(--bg)
    (o mesmo quase-preto usado como fundo no resto do site). */
 .gallery{
-  --fade: clamp(22rem,46vh,34rem);
+  --fade: clamp(26rem,52vh,38rem);
   position:relative; background:var(--ink); color:var(--bg);
   padding:0;
 }
-/* transição longa e com paragens intermédias (não um gradiente linear de 2 pontos)
-   — o olho é muito sensível a saltos de luminosidade; uma curva com "patamares"
-   perto de cada extremo lê-se como uma mudança gradual de luz, não como um corte */
+/* curva de cosseno (raised-cosine), não um gradiente de poucos pontos — a
+   derivada chega a zero em cada extremo, por isso funde sem costura no preto
+   sólido de cima e no creme sólido de baixo. É o mesmo tipo de transição sem
+   arestas que se vê nos próprios gradientes das peças, só que vertical. */
 .gallery::before{
   content:''; position:absolute; top:0; left:0; right:0; height:var(--fade); z-index:0; pointer-events:none;
   background:linear-gradient(180deg,
     var(--bg) 0%,
-    rgba(11,10,13,.94) 20%,
-    rgba(11,10,13,.7) 42%,
-    rgba(11,10,13,.36) 66%,
-    rgba(11,10,13,.1) 86%,
+    rgba(11,10,13,.976) 10%,
+    rgba(11,10,13,.905) 20%,
+    rgba(11,10,13,.794) 30%,
+    rgba(11,10,13,.655) 40%,
+    rgba(11,10,13,.5) 50%,
+    rgba(11,10,13,.346) 60%,
+    rgba(11,10,13,.206) 70%,
+    rgba(11,10,13,.095) 80%,
+    rgba(11,10,13,.025) 90%,
     transparent 100%);
 }
 .gallery::after{
   content:''; position:absolute; bottom:0; left:0; right:0; height:var(--fade); z-index:0; pointer-events:none;
   background:linear-gradient(0deg,
     var(--bg-2) 0%,
-    rgba(19,17,22,.94) 20%,
-    rgba(19,17,22,.7) 42%,
-    rgba(19,17,22,.36) 66%,
-    rgba(19,17,22,.1) 86%,
+    rgba(19,17,22,.976) 10%,
+    rgba(19,17,22,.905) 20%,
+    rgba(19,17,22,.794) 30%,
+    rgba(19,17,22,.655) 40%,
+    rgba(19,17,22,.5) 50%,
+    rgba(19,17,22,.346) 60%,
+    rgba(19,17,22,.206) 70%,
+    rgba(19,17,22,.095) 80%,
+    rgba(19,17,22,.025) 90%,
     transparent 100%);
 }
 .gallery-title{

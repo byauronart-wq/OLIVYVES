@@ -38,6 +38,43 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.ticker.lagSmoothing(0);
   }
 
+  // --- scroll-driven snapping das peças na galeria ---
+  // CSS scroll-snap não funciona aqui: a Lenis intercepta o scroll nativo e o
+  // browser nunca vê os eventos de scroll que o disparariam. Por isso o snap
+  // é feito à mão, com a própria API da Lenis (scrollTo), assim que o scroll
+  // pára perto de uma peça.
+  const galleryEl = document.querySelector('.gallery');
+  if (lenis && galleryEl) {
+    const scenes = Array.from(galleryEl.querySelectorAll('.scene'));
+    let snapTimer = null;
+    let snapping = false;
+
+    const inGalleryView = () => {
+      const r = galleryEl.getBoundingClientRect();
+      return r.top < window.innerHeight && r.bottom > 0;
+    };
+
+    lenis.on('scroll', () => {
+      if (snapping) return;
+      clearTimeout(snapTimer);
+      snapTimer = setTimeout(() => {
+        if (snapping || !inGalleryView()) return;
+        const mid = window.innerHeight / 2;
+        let nearest = null;
+        let nearestDist = Infinity;
+        scenes.forEach((el) => {
+          const r = el.getBoundingClientRect();
+          const dist = Math.abs(r.top + r.height / 2 - mid);
+          if (dist < nearestDist) { nearestDist = dist; nearest = el; }
+        });
+        if (nearest && nearestDist > 40) {
+          snapping = true;
+          lenis.scrollTo(nearest, { duration: 0.9, onComplete: () => { snapping = false; } });
+        }
+      }, 160);
+    });
+  }
+
   // --- reveal on scroll ---
   document.querySelectorAll('[data-reveal]').forEach((el, i) => {
     ScrollTrigger.create({
