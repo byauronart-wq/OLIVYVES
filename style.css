@@ -375,29 +375,7 @@ footer p{ color:var(--ink-dim); font-size:.8rem; }
 /* ============================================================
    LOJA
    ============================================================ */
-.shop-page{ background:var(--bg); position:relative; z-index:0; }
-/* aura ambiente — o mesmo "gradiente vivo" das peças, a deslocar-se devagar
-   pelo fundo. Visível ao olhar, mas sem cortes nem contornos duros.
-   z-index:0 no .shop-page cria um contexto de stacking próprio, para que o
-   z-index:-1 aqui fique atrás do CONTEÚDO mas à FRENTE do fundo sólido do body
-   (sem isto, ficava tapado pelo próprio background:var(--bg) do body). */
-.shop-page::before{
-  content:''; position:fixed; inset:0; z-index:-1; pointer-events:none;
-  background:
-    radial-gradient(circle at 20% 25%, rgba(217,143,90,.32), transparent 55%),
-    radial-gradient(circle at 82% 18%, rgba(127,123,216,.28), transparent 58%),
-    radial-gradient(circle at 40% 88%, rgba(217,143,90,.24), transparent 60%);
-  background-repeat:no-repeat;
-  mix-blend-mode:screen;
-  animation: shopAura 26s ease-in-out infinite alternate;
-}
-@keyframes shopAura{
-  0%{ background-position: 20% 25%, 82% 18%, 40% 88%; }
-  100%{ background-position: 42% 46%, 56% 40%, 64% 60%; }
-}
-@media (prefers-reduced-motion: reduce){
-  .shop-page::before{ animation:none; }
-}
+.shop-page{ background:var(--bg); }
 
 /* scroll-driven snapping do catálogo — "proximity" (não "mandatory") para
    parar suavemente perto de cada secção sem travar o scroll normal a meio. */
@@ -518,7 +496,6 @@ body.modal-open{ overflow:hidden; }
 .price-value{ font-family:var(--serif); font-size:2rem; }
 .cta-order{ text-align:center; }
 .cta-order:hover{ background:var(--accent); border-color:var(--accent); color:#1a0f08; }
-.order-note{ margin-top:.9rem; font-size:.78rem; color:var(--ink-dim); font-weight:300; text-align:center; }
 
 /* ---------- responsive ---------- */
 @media (max-width: 760px){
@@ -542,15 +519,23 @@ body.modal-open{ overflow:hidden; }
    ============================================================ */
 .portal-page{ background:var(--bg); }
 
-/* cursor aura — brush suave que segue o rato (ver portal-cursor.js) */
+/* cursor aura — gradiente grande e vivo que se move com o rato, ao estilo
+   do "colorsplash" interativo da Setaprint (ver portal-cursor.js). Grande
+   escala e cores saturadas de propósito — não é um brush pequeno e discreto. */
 body.aura-cursor-active{ cursor:none; }
 .aura-cursor{
-  position:fixed; top:0; left:0; width:150px; height:150px; margin:-75px 0 0 -75px;
+  position:fixed; top:0; left:0;
+  width:58vmax; height:58vmax; margin:-29vmax 0 0 -29vmax;
   border-radius:50%; pointer-events:none; z-index:400;
-  background:radial-gradient(circle, rgba(217,143,90,.55) 0%, rgba(127,123,216,.38) 55%, transparent 75%);
-  filter:blur(20px);
+  background:radial-gradient(circle,
+    rgba(233,178,110,.92) 0%,
+    rgba(217,143,90,.78) 16%,
+    rgba(202,116,122,.55) 34%,
+    rgba(160,113,175,.36) 54%,
+    rgba(127,123,216,.2) 72%,
+    transparent 86%);
   mix-blend-mode:screen;
-  opacity:0; transition:opacity .3s ease;
+  opacity:0; transition:opacity .5s ease;
   will-change:transform;
 }
 .aura-cursor.on{ opacity:1; }
