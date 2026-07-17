@@ -38,15 +38,21 @@ document.addEventListener('DOMContentLoaded', () => {
     gsap.ticker.lagSmoothing(0);
   }
 
-  // --- scroll-driven snapping das peças na galeria ---
+  // --- scroll-driven snapping das peças na galeria (só rato/trackpad) ---
   // CSS scroll-snap não funciona aqui: a Lenis intercepta o scroll nativo.
   // O snap é feito à mão com a API da própria Lenis (scrollTo). Importante:
   // escutamos os eventos brutos de wheel/touchmove (a INTENÇÃO do utilizador),
   // não o 'scroll' da Lenis — esse continua a disparar durante a inércia dela
   // própria, o que atrasava a deteção de "parou de fazer scroll" em segundos.
   // Ouvindo o input diretamente, o snap arranca assim que a mão larga o rato.
+  //
+  // Só corre em pointer:fine (rato/trackpad). Em touch, o "touchmove" para de
+  // disparar assim que o dedo levanta mas a Lenis continua a inércia do
+  // gesto — o snap disparava antes de essa inércia percorrer o suficiente e
+  // devolvia sempre à peça atual, travando o scroll para cima no mobile.
   const galleryEl = document.querySelector('.gallery');
-  if (lenis && galleryEl) {
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+  if (lenis && galleryEl && finePointer) {
     const scenes = Array.from(galleryEl.querySelectorAll('.scene'));
     let snapTimer = null;
 

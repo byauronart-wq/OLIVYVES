@@ -345,7 +345,10 @@ footer p{ color:var(--ink-dim); font-size:.8rem; }
 }
 [data-reveal].in{ opacity:1; transform:translateY(0); }
 
-.gallery-cta{ position:relative; z-index:1; text-align:center; padding:1rem clamp(1.2rem,4vw,3rem) var(--fade); }
+/* z-index acima do .chat-fab (150) — o botão flutuante do chat é fixo no
+   canto e, num ecrã estreito, pode acabar visualmente por cima deste CTA
+   nalgum ponto do scroll; sem isto, o clique ia sempre para o chat. */
+.gallery-cta{ position:relative; z-index:160; text-align:center; padding:1rem clamp(1.2rem,4vw,3rem) var(--fade); }
 
 /* ============================================================
    LOJA
