@@ -50,31 +50,65 @@ document.addEventListener('DOMContentLoaded', () => {
     const scenes = Array.from(galleryEl.querySelectorAll('.scene'));
     let snapTimer = null;
 
+    // direção do scroll (1 = a descer, -1 = a subir), da própria Lenis.
+    let lastDirection = 0;
+    lenis.on('scroll', (e) => { lastDirection = e.direction || lastDirection; });
+
     const inGalleryView = () => {
       const r = galleryEl.getBoundingClientRect();
       return r.top < window.innerHeight && r.bottom > 0;
     };
+
+    // Guardamos qual é a peça "atual" como estado — em vez de recalcular do
+    // zero "qual é a mais próxima" a cada snap. Comparar só por distância
+    // bruta falhava: se o utilizador tivesse acabado de sair da peça atual
+    // (ainda perto dela em px) mas a ir claramente para a seguinte, a peça
+    // atual continuava "mais próxima" e o snap puxava para trás — exatamente
+    // o "faço scroll para baixo e ele salta para cima" reportado. Agora só
+    // avançamos quando o afastamento na direção do movimento passa de facto
+    // uma fração da altura da peça (intenção clara), nunca "à distância".
+    let currentIndex = 0;
+    const nearestIndex = () => {
+      const mid = window.innerHeight / 2;
+      let idx = 0;
+      let best = Infinity;
+      scenes.forEach((el, i) => {
+        const r = el.getBoundingClientRect();
+        const d = Math.abs(r.top + r.height / 2 - mid);
+        if (d < best) { best = d; idx = i; }
+      });
+      return idx;
+    };
+    currentIndex = nearestIndex();
 
     const scheduleSnap = () => {
       clearTimeout(snapTimer);
       snapTimer = setTimeout(() => {
         if (!inGalleryView()) return;
         const mid = window.innerHeight / 2;
-        let nearest = null;
-        let nearestDist = Infinity;
-        scenes.forEach((el) => {
-          const r = el.getBoundingClientRect();
-          const dist = Math.abs(r.top + r.height / 2 - mid);
-          if (dist < nearestDist) { nearestDist = dist; nearest = el; }
-        });
-        if (nearest && nearestDist > 30) {
-          // lenis.scrollTo(elemento) alinha o TOPO do elemento ao topo do ecrã
-          // por defeito — não centra. Como a peça costuma ser mais alta que o
-          // ecrã, isso empurrava a legenda/título para fora da vista. Calculamos
-          // o Y exato que centra a peça, para coincidir com a escolha de "mais
-          // próxima" acima (que já é feita por centro, não por topo).
-          const r = nearest.getBoundingClientRect();
-          const targetY = window.scrollY + r.top + r.height / 2 - window.innerHeight / 2;
+        const curRect = scenes[currentIndex].getBoundingClientRect();
+        const offset = curRect.top + curRect.height / 2 - mid; // + ainda não chegámos ao centro, - já passámos
+
+        let targetIndex = currentIndex;
+        const threshold = curRect.height * 0.2;
+        if (lastDirection > 0 && offset < -threshold && currentIndex < scenes.length - 1) {
+          targetIndex = currentIndex + 1;
+        } else if (lastDirection < 0 && offset > threshold && currentIndex > 0) {
+          targetIndex = currentIndex - 1;
+        }
+        // rede de segurança: se algo (link, salto grande) nos afastou muito
+        // da peça "atual" que tínhamos guardada, recalibra para a mais próxima
+        if (Math.abs(offset) > curRect.height * 0.85) targetIndex = nearestIndex();
+
+        currentIndex = targetIndex;
+        const target = scenes[targetIndex];
+        const r = target.getBoundingClientRect();
+        const targetY = window.scrollY + r.top + r.height / 2 - window.innerHeight / 2;
+        // lenis.scrollTo(elemento) alinha o TOPO do elemento ao topo do ecrã por
+        // defeito — não centra. Como a peça costuma ser mais alta que o ecrã,
+        // isso empurrava a legenda/título para fora da vista. Passamos o Y já
+        // calculado para centrar, em vez do elemento.
+        if (Math.abs(targetY - window.scrollY) > 20) {
           lenis.scrollTo(targetY, { duration: 0.6 });
         }
       }, 80);
