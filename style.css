@@ -497,17 +497,6 @@ body.modal-open{ overflow:hidden; }
    ============================================================ */
 .portal-page{ background:var(--bg); }
 
-/* cursor aura — traço fluido em canvas, sem forma fixa (ver portal-cursor.js).
-   mix-blend-mode:normal de propósito — "screen"/"lighter" dava um brilho
-   aditivo forte; isto lê-se mais como tinta a misturar-se do que luz. */
-body.aura-cursor-active{ cursor:none; }
-.aura-cursor-canvas{
-  position:fixed; inset:0; z-index:400; pointer-events:none;
-  mix-blend-mode:normal;
-  opacity:0; transition:opacity .5s ease;
-}
-.aura-cursor-canvas.on{ opacity:1; }
-
 /* small collection tag next to the OLIVEIRA wordmark */
 .collection-tag{
   font-family:var(--sans); font-size:.6rem; letter-spacing:.18em;
