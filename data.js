@@ -73,7 +73,7 @@ window.CATALOG = {
       id: 'auron',
       name: 'AURON',
       mode: 'imersivo',                 // AURON usa a experiência "casa ao entardecer"
-      page: 'auron.html',               // página da experiência da coleção
+      page: 'index.html#top',           // a coleção vive agora dentro do próprio index.html
 
       tagline: {
         pt: 'Auras de cor em acrílico translúcido.',

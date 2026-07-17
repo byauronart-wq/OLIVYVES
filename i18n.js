@@ -17,12 +17,8 @@ const I18N = {
     'nav.shop': 'Loja',
     'nav.material': 'Material',
     'nav.about': 'Sobre',
-    'nav.collections': 'Coleções',
-    'nav.auron': 'AURON',
 
     'portal.tagline': 'Peças de autor, em coleções. Cada coleção, um mundo próprio.',
-    'portal.enter': 'Coleções ↓',
-    'portal.collections': 'Coleções',
     'portal.view': 'Ver coleção',
 
     'hero.eyebrow': 'Coleção AURON · acrílico translúcido',
@@ -107,12 +103,8 @@ const I18N = {
     'nav.shop': 'Shop',
     'nav.material': 'Material',
     'nav.about': 'About',
-    'nav.collections': 'Collections',
-    'nav.auron': 'AURON',
 
     'portal.tagline': 'Signed pieces, in collections. Each collection, a world of its own.',
-    'portal.enter': 'Collections ↓',
-    'portal.collections': 'Collections',
     'portal.view': 'View collection',
 
     'hero.eyebrow': 'AURON collection · translucent acrylic',
