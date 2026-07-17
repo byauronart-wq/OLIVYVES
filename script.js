@@ -68,7 +68,14 @@ document.addEventListener('DOMContentLoaded', () => {
           if (dist < nearestDist) { nearestDist = dist; nearest = el; }
         });
         if (nearest && nearestDist > 30) {
-          lenis.scrollTo(nearest, { duration: 0.6 });
+          // lenis.scrollTo(elemento) alinha o TOPO do elemento ao topo do ecrã
+          // por defeito — não centra. Como a peça costuma ser mais alta que o
+          // ecrã, isso empurrava a legenda/título para fora da vista. Calculamos
+          // o Y exato que centra a peça, para coincidir com a escolha de "mais
+          // próxima" acima (que já é feita por centro, não por topo).
+          const r = nearest.getBoundingClientRect();
+          const targetY = window.scrollY + r.top + r.height / 2 - window.innerHeight / 2;
+          lenis.scrollTo(targetY, { duration: 0.6 });
         }
       }, 80);
     };
@@ -100,6 +107,28 @@ document.addEventListener('DOMContentLoaded', () => {
         end: 'bottom top',
         scrub: true,
       },
+    });
+  }
+
+  // --- transição escuro↔claro da galeria, animada pelo próprio scroll ---
+  // Em vez de um gradiente CSS fixo, a opacidade destas duas placas sólidas
+  // é recalculada pelo GSAP a cada frame, ligada exatamente à distância
+  // percorrida (a mesma altura de --fade em style.css) — fica sincronizada
+  // com o scroll real, não uma imagem estática por cima.
+  const fadeTop = document.querySelector('.gallery-fade--top');
+  const fadeBottom = document.querySelector('.gallery-fade--bottom');
+  if (fadeTop) {
+    gsap.fromTo(fadeTop, { opacity: 1 }, {
+      opacity: 0,
+      ease: 'none',
+      scrollTrigger: { trigger: fadeTop, start: 'top bottom', end: 'bottom top', scrub: true },
+    });
+  }
+  if (fadeBottom) {
+    gsap.fromTo(fadeBottom, { opacity: 0 }, {
+      opacity: 1,
+      ease: 'none',
+      scrollTrigger: { trigger: fadeBottom, start: 'top bottom', end: 'bottom top', scrub: true },
     });
   }
 

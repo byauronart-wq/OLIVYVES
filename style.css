@@ -148,44 +148,19 @@ a{ color:inherit; text-decoration:none; }
    (o mesmo branco-quente usado como texto no resto do site), texto = var(--bg)
    (o mesmo quase-preto usado como fundo no resto do site). */
 .gallery{
-  --fade: clamp(26rem,52vh,38rem);
+  --fade: clamp(42rem,92vh,64rem);
   position:relative; background:var(--ink); color:var(--bg);
   padding:0;
 }
-/* curva de cosseno (raised-cosine), não um gradiente de poucos pontos — a
-   derivada chega a zero em cada extremo, por isso funde sem costura no preto
-   sólido de cima e no creme sólido de baixo. É o mesmo tipo de transição sem
-   arestas que se vê nos próprios gradientes das peças, só que vertical. */
-.gallery::before{
-  content:''; position:absolute; top:0; left:0; right:0; height:var(--fade); z-index:0; pointer-events:none;
-  background:linear-gradient(180deg,
-    var(--bg) 0%,
-    rgba(11,10,13,.976) 10%,
-    rgba(11,10,13,.905) 20%,
-    rgba(11,10,13,.794) 30%,
-    rgba(11,10,13,.655) 40%,
-    rgba(11,10,13,.5) 50%,
-    rgba(11,10,13,.346) 60%,
-    rgba(11,10,13,.206) 70%,
-    rgba(11,10,13,.095) 80%,
-    rgba(11,10,13,.025) 90%,
-    transparent 100%);
+/* zona de transição bem mais longa (quase um ecrã inteiro), animada pelo
+   próprio scroll via GSAP (ver script.js) em vez de um gradiente CSS fixo —
+   a opacidade é recalculada a cada frame, sincronizada de facto com o scroll,
+   e a distância maior é o que mais ajuda a não parecer um corte. */
+.gallery-fade{
+  position:absolute; left:0; right:0; height:var(--fade); z-index:0; pointer-events:none;
 }
-.gallery::after{
-  content:''; position:absolute; bottom:0; left:0; right:0; height:var(--fade); z-index:0; pointer-events:none;
-  background:linear-gradient(0deg,
-    var(--bg-2) 0%,
-    rgba(19,17,22,.976) 10%,
-    rgba(19,17,22,.905) 20%,
-    rgba(19,17,22,.794) 30%,
-    rgba(19,17,22,.655) 40%,
-    rgba(19,17,22,.5) 50%,
-    rgba(19,17,22,.346) 60%,
-    rgba(19,17,22,.206) 70%,
-    rgba(19,17,22,.095) 80%,
-    rgba(19,17,22,.025) 90%,
-    transparent 100%);
-}
+.gallery-fade--top{ top:0; background:var(--bg); }
+.gallery-fade--bottom{ bottom:0; background:var(--bg-2); }
 .gallery-title{
   position:relative; z-index:1; text-align:center;
   padding:var(--fade) 1.2rem clamp(2rem,5vw,3rem);
@@ -519,13 +494,14 @@ body.modal-open{ overflow:hidden; }
    ============================================================ */
 .portal-page{ background:var(--bg); }
 
-/* cursor aura — rasto de partículas em canvas, sem forma fixa (ver
-   portal-cursor.js). Lê-se como fumo ou água a dissipar-se, não um blob. */
+/* cursor aura — traço fluido em canvas, sem forma fixa (ver portal-cursor.js).
+   mix-blend-mode:normal de propósito — "screen"/"lighter" dava um brilho
+   aditivo forte; isto lê-se mais como tinta a misturar-se do que luz. */
 body.aura-cursor-active{ cursor:none; }
 .aura-cursor-canvas{
   position:fixed; inset:0; z-index:400; pointer-events:none;
-  mix-blend-mode:screen;
-  opacity:0; transition:opacity .6s ease;
+  mix-blend-mode:normal;
+  opacity:0; transition:opacity .5s ease;
 }
 .aura-cursor-canvas.on{ opacity:1; }
 
