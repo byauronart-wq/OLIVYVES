@@ -39,26 +39,26 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- scroll-driven snapping das peças na galeria ---
-  // CSS scroll-snap não funciona aqui: a Lenis intercepta o scroll nativo e o
-  // browser nunca vê os eventos de scroll que o disparariam. Por isso o snap
-  // é feito à mão, com a própria API da Lenis (scrollTo), assim que o scroll
-  // pára perto de uma peça.
+  // CSS scroll-snap não funciona aqui: a Lenis intercepta o scroll nativo.
+  // O snap é feito à mão com a API da própria Lenis (scrollTo). Importante:
+  // escutamos os eventos brutos de wheel/touchmove (a INTENÇÃO do utilizador),
+  // não o 'scroll' da Lenis — esse continua a disparar durante a inércia dela
+  // própria, o que atrasava a deteção de "parou de fazer scroll" em segundos.
+  // Ouvindo o input diretamente, o snap arranca assim que a mão larga o rato.
   const galleryEl = document.querySelector('.gallery');
   if (lenis && galleryEl) {
     const scenes = Array.from(galleryEl.querySelectorAll('.scene'));
     let snapTimer = null;
-    let snapping = false;
 
     const inGalleryView = () => {
       const r = galleryEl.getBoundingClientRect();
       return r.top < window.innerHeight && r.bottom > 0;
     };
 
-    lenis.on('scroll', () => {
-      if (snapping) return;
+    const scheduleSnap = () => {
       clearTimeout(snapTimer);
       snapTimer = setTimeout(() => {
-        if (snapping || !inGalleryView()) return;
+        if (!inGalleryView()) return;
         const mid = window.innerHeight / 2;
         let nearest = null;
         let nearestDist = Infinity;
@@ -67,12 +67,15 @@ document.addEventListener('DOMContentLoaded', () => {
           const dist = Math.abs(r.top + r.height / 2 - mid);
           if (dist < nearestDist) { nearestDist = dist; nearest = el; }
         });
-        if (nearest && nearestDist > 40) {
-          snapping = true;
-          lenis.scrollTo(nearest, { duration: 0.9, onComplete: () => { snapping = false; } });
+        if (nearest && nearestDist > 30) {
+          lenis.scrollTo(nearest, { duration: 0.6 });
         }
-      }, 160);
-    });
+      }, 80);
+    };
+
+    ['wheel', 'touchmove'].forEach((evt) =>
+      window.addEventListener(evt, scheduleSnap, { passive: true })
+    );
   }
 
   // --- reveal on scroll ---

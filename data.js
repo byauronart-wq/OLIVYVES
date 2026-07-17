@@ -15,7 +15,7 @@
 /* ---- CONFIG global: como se encomenda ---- */
 window.CONFIG = {
   brand: 'OLIV YVES',
-  domain: 'byauron.art',
+  domain: 'olivyves.com',
 
   order: {
     email: 'ivodeoliveiradrive@gmail.com',

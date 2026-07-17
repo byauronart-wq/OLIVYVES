@@ -20,7 +20,6 @@ const I18N = {
     'nav.collections': 'Coleções',
     'nav.auron': 'AURON',
 
-    'portal.eyebrow': 'Ivo de Oliveira',
     'portal.tagline': 'Peças de autor, em coleções. Cada coleção, um mundo próprio.',
     'portal.enter': 'Coleções ↓',
     'portal.collections': 'Coleções',
@@ -63,13 +62,12 @@ const I18N = {
     'about.cta': 'Ver a loja',
     'scene.cta': 'Ver na loja →',
 
-    'footer.tag': 'byauron.art · © 2026',
     'footer.terms': 'Termos',
     'footer.privacy': 'Privacidade',
     'footer.returns': 'Devoluções',
     'footer.payments': 'Pagamentos e envios',
     'footer.contact': 'Contacto',
-    'footer.rights': '© 2026 OLIV YVES · Ivo de Oliveira. Todos os direitos reservados.',
+    'footer.rights': '© 2026 OLIV YVES. Todos os direitos reservados.',
 
     /* --- Loja --- */
     'shop.eyebrow': 'Loja',
@@ -112,7 +110,6 @@ const I18N = {
     'nav.collections': 'Collections',
     'nav.auron': 'AURON',
 
-    'portal.eyebrow': 'Ivo de Oliveira',
     'portal.tagline': 'Signed pieces, in collections. Each collection, a world of its own.',
     'portal.enter': 'Collections ↓',
     'portal.collections': 'Collections',
@@ -155,13 +152,12 @@ const I18N = {
     'about.cta': 'View the shop',
     'scene.cta': 'View in shop →',
 
-    'footer.tag': 'byauron.art · © 2026',
     'footer.terms': 'Terms',
     'footer.privacy': 'Privacy',
     'footer.returns': 'Returns',
     'footer.payments': 'Payments & shipping',
     'footer.contact': 'Contact',
-    'footer.rights': '© 2026 OLIV YVES · Ivo de Oliveira. All rights reserved.',
+    'footer.rights': '© 2026 OLIV YVES. All rights reserved.',
 
     /* --- Shop --- */
     'shop.eyebrow': 'Shop',

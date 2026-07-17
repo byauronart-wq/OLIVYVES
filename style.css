@@ -519,26 +519,15 @@ body.modal-open{ overflow:hidden; }
    ============================================================ */
 .portal-page{ background:var(--bg); }
 
-/* cursor aura — gradiente grande e vivo que se move com o rato, ao estilo
-   do "colorsplash" interativo da Setaprint (ver portal-cursor.js). Grande
-   escala e cores saturadas de propósito — não é um brush pequeno e discreto. */
+/* cursor aura — rasto de partículas em canvas, sem forma fixa (ver
+   portal-cursor.js). Lê-se como fumo ou água a dissipar-se, não um blob. */
 body.aura-cursor-active{ cursor:none; }
-.aura-cursor{
-  position:fixed; top:0; left:0;
-  width:58vmax; height:58vmax; margin:-29vmax 0 0 -29vmax;
-  border-radius:50%; pointer-events:none; z-index:400;
-  background:radial-gradient(circle,
-    rgba(233,178,110,.92) 0%,
-    rgba(217,143,90,.78) 16%,
-    rgba(202,116,122,.55) 34%,
-    rgba(160,113,175,.36) 54%,
-    rgba(127,123,216,.2) 72%,
-    transparent 86%);
+.aura-cursor-canvas{
+  position:fixed; inset:0; z-index:400; pointer-events:none;
   mix-blend-mode:screen;
-  opacity:0; transition:opacity .5s ease;
-  will-change:transform;
+  opacity:0; transition:opacity .6s ease;
 }
-.aura-cursor.on{ opacity:1; }
+.aura-cursor-canvas.on{ opacity:1; }
 
 /* small collection tag next to the OLIVEIRA wordmark */
 .collection-tag{

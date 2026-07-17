@@ -234,7 +234,7 @@ function buildDataJs() {
   const config =
 `window.CONFIG = {
   brand: ${JSON.stringify(cfg.brand || 'OLIVEIRA')},
-  domain: ${JSON.stringify(cfg.domain || 'byauron.art')},
+  domain: ${JSON.stringify(cfg.domain || 'olivyves.com')},
   order: {
     mode: ${JSON.stringify(o.mode || 'whatsapp')},            // 'whatsapp' | 'email' | 'stripe'
     whatsapp: ${JSON.stringify(o.whatsapp || '')},        // nº internacional só dígitos; vazio = usa email
