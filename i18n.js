@@ -194,7 +194,7 @@ function t(key) {
   return (I18N[lang] && I18N[lang][key]) || (I18N.pt[key] || key);
 }
 
-function applyLang(lang) {
+function applyLang(lang, isUserAction) {
   if (lang) localStorage.setItem('auronLang', lang);
   const cur = getLang();
   document.documentElement.lang = cur;
@@ -215,22 +215,26 @@ function applyLang(lang) {
     });
   });
 
-  // estado do botão
-  document.querySelectorAll('[data-lang-toggle]').forEach((btn) => {
-    btn.querySelectorAll('[data-lang]').forEach((s) => {
-      s.classList.toggle('on', s.getAttribute('data-lang') === cur);
-    });
-  });
+  // estado do dropdown
+  document.querySelectorAll('[data-lang-select]').forEach((sel) => { sel.value = cur; });
+
+  // a moeda segue o idioma por defeito (PT→EUR, EN→USD) — mas só quando o
+  // idioma é escolhido ativamente no dropdown, nunca ao simplesmente carregar
+  // a página (isUserAction=false nesse caso), para não sobrepor uma moeda
+  // que a pessoa já tinha escolhido à mão numa visita anterior.
+  if (isUserAction && window.Currency) {
+    Currency.set(cur === 'en' ? 'USD' : 'EUR');
+  }
 
   // avisa o resto da página (a loja re-desenha os produtos)
   document.dispatchEvent(new CustomEvent('auron:langchange', { detail: { lang: cur } }));
 }
 
 function initLangToggle() {
-  document.querySelectorAll('[data-lang-toggle] [data-lang]').forEach((el) => {
-    el.addEventListener('click', () => applyLang(el.getAttribute('data-lang')));
+  document.querySelectorAll('[data-lang-select]').forEach((sel) => {
+    sel.addEventListener('change', () => applyLang(sel.value, true));
   });
-  applyLang(getLang());
+  applyLang(getLang(), false);
 }
 
 document.addEventListener('DOMContentLoaded', initLangToggle);

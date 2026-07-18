@@ -87,11 +87,7 @@ function renderCartBadge() {
 }
 
 function renderCurrencyToggle() {
-  document.querySelectorAll('[data-currency-toggle]').forEach((btn) => {
-    btn.querySelectorAll('[data-cur]').forEach((s) => {
-      s.classList.toggle('on', s.getAttribute('data-cur') === Currency.get());
-    });
-  });
+  document.querySelectorAll('[data-currency-select]').forEach((sel) => { sel.value = Currency.get(); });
 }
 
 function renderCartDrawer() {
@@ -165,8 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (drawer && !drawer.hidden && e.key === 'Escape') closeCart();
   });
 
-  document.querySelectorAll('[data-currency-toggle] [data-cur]').forEach((el) => {
-    el.addEventListener('click', () => Currency.set(el.getAttribute('data-cur')));
+  document.querySelectorAll('[data-currency-select]').forEach((sel) => {
+    sel.addEventListener('change', () => Currency.set(sel.value));
   });
 
   const checkoutBtn = document.getElementById('cart-checkout');
