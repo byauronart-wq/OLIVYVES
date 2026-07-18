@@ -91,25 +91,28 @@ document.addEventListener('DOMContentLoaded', () => {
       end: 'bottom top',
       scrub: true,
       onUpdate: (self) => {
-        const eased = (1 - Math.cos(self.progress * Math.PI)) / 2;
-        fadeTop.style.setProperty('--aura-ry', (2 + eased * 66) + '%');
+        // ease-out (rápido no início, pousa devagar no fim) — não a curva
+        // simétrica de antes, que era tão lenta a arrancar que o desfoque
+        // ficava espremido a quase nada por boa parte do scroll.
+        const eased = Math.sin(self.progress * Math.PI / 2);
+        fadeTop.style.setProperty('--aura-ry', (14 + eased * 54) + '%');
       },
     });
   }
   if (fadeBottom) {
-    // mesma curva (a crescer) e a mesma âncora (rebordo de baixo) que o
-    // topo — só as cores em style.css estão trocadas. Crescer, não encolher,
-    // é o que faz o scroll "apanhar" a zona de desfoque; a testar ao
-    // contrário, a maior parte do ecrã ficava sólida com só uma réstia de
-    // desfoque, porque a janela do scroll ultrapassa a âncora depressa demais.
+    // mesma curva e a mesma âncora (rebordo de baixo) que o topo — só as
+    // cores em style.css estão trocadas. Crescer, não encolher, é o que faz
+    // o scroll "apanhar" a zona de desfoque; a testar ao contrário, a maior
+    // parte do ecrã ficava sólida com só uma réstia de desfoque, porque a
+    // janela do scroll ultrapassa a âncora depressa demais.
     ScrollTrigger.create({
       trigger: fadeBottom,
       start: 'top bottom',
       end: 'bottom top',
       scrub: true,
       onUpdate: (self) => {
-        const eased = (1 - Math.cos(self.progress * Math.PI)) / 2;
-        fadeBottom.style.setProperty('--aura-ry-b', (2 + eased * 66) + '%');
+        const eased = Math.sin(self.progress * Math.PI / 2);
+        fadeBottom.style.setProperty('--aura-ry-b', (14 + eased * 54) + '%');
       },
     });
   }
