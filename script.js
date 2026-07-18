@@ -97,10 +97,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   if (fadeBottom) {
-    gsap.fromTo(fadeBottom, { opacity: 0 }, {
-      opacity: 1,
-      ease: 'sine.inOut',
-      scrollTrigger: { trigger: fadeBottom, start: 'top bottom', end: 'bottom top', scrub: true },
+    // o mesmo efeito "aura", mas ao contrário: começa aberto (a galeria
+    // ainda em creme) e fecha à medida que se sai da galeria para a secção
+    // escura seguinte.
+    ScrollTrigger.create({
+      trigger: fadeBottom,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: true,
+      onUpdate: (self) => {
+        const eased = (1 - Math.cos(self.progress * Math.PI)) / 2;
+        fadeBottom.style.setProperty('--aura-ry-b', (68 - eased * 66) + '%');
+      },
     });
   }
 
