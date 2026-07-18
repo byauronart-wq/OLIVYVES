@@ -161,12 +161,17 @@ a{ color:inherit; text-decoration:none; }
 }
 /* zona de transição bem mais longa (quase um ecrã inteiro), animada pelo
    próprio scroll via GSAP (ver script.js) em vez de um gradiente CSS fixo —
-   a opacidade é recalculada a cada frame, sincronizada de facto com o scroll,
-   e a distância maior é o que mais ajuda a não parecer um corte. */
+   a distância maior é o que mais ajuda a não parecer um corte. */
 .gallery-fade{
   position:absolute; left:0; right:0; height:var(--fade); z-index:0; pointer-events:none;
 }
-.gallery-fade--top{ top:0; background:var(--bg); }
+/* efeito "aura" — uma faixa horizontal larga e muito desfocada que se abre a
+   partir do centro (--aura-ry, controlado pelo script.js), sem núcleo sólido
+   em lado nenhum — a mesma qualidade das próprias peças AURON. */
+.gallery-fade--top{
+  top:0;
+  background:radial-gradient(ellipse 220% var(--aura-ry, 2%) at 50% 50%, transparent 15%, var(--bg) 100%);
+}
 .gallery-fade--bottom{ bottom:0; background:var(--bg-2); }
 .gallery-title{
   position:relative; z-index:1; text-align:center;

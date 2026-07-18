@@ -76,20 +76,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- transição escuro↔claro da galeria, animada pelo próprio scroll ---
-  // A opacidade destas duas placas sólidas é recalculada pelo GSAP a cada
-  // frame, ligada exatamente à distância percorrida. ease:'none' (linear)
-  // muda a opacidade a ritmo constante, incluindo mesmo no instante em que
-  // começa — e uma mudança de ritmo abrupta logo à entrada lê-se como corte,
-  // mesmo sendo matematicamente contínua. sine.inOut tem derivada zero nos
-  // dois extremos, por isso funde mesmo sem custura no sólido de cada lado.
+  // --- transição escuro→claro da galeria: efeito "aura" ---
+  // Uma faixa horizontal larga e muito desfocada (--aura-ry em style.css)
+  // abre-se a partir do centro, revelando o creme por baixo — sem núcleo
+  // sólido em lado nenhum, a mesma qualidade das próprias peças AURON.
+  // A curva é aplicada à mão (equivalente a sine.inOut: derivada zero nos
+  // dois extremos, funde sem costura no sólido de cada lado).
   const fadeTop = document.querySelector('.gallery-fade--top');
   const fadeBottom = document.querySelector('.gallery-fade--bottom');
   if (fadeTop) {
-    gsap.fromTo(fadeTop, { opacity: 1 }, {
-      opacity: 0,
-      ease: 'sine.inOut',
-      scrollTrigger: { trigger: fadeTop, start: 'top bottom', end: 'bottom top', scrub: true },
+    ScrollTrigger.create({
+      trigger: fadeTop,
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: true,
+      onUpdate: (self) => {
+        const eased = (1 - Math.cos(self.progress * Math.PI)) / 2;
+        fadeTop.style.setProperty('--aura-ry', (2 + eased * 66) + '%');
+      },
     });
   }
   if (fadeBottom) {
