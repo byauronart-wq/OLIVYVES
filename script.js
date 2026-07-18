@@ -97,9 +97,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   if (fadeBottom) {
-    // o mesmo efeito "aura", mas ao contrário: começa aberto (a galeria
-    // ainda em creme) e fecha à medida que se sai da galeria para a secção
-    // escura seguinte.
+    // mesma curva (a crescer) e a mesma âncora (rebordo de baixo) que o
+    // topo — só as cores em style.css estão trocadas. Crescer, não encolher,
+    // é o que faz o scroll "apanhar" a zona de desfoque; a testar ao
+    // contrário, a maior parte do ecrã ficava sólida com só uma réstia de
+    // desfoque, porque a janela do scroll ultrapassa a âncora depressa demais.
     ScrollTrigger.create({
       trigger: fadeBottom,
       start: 'top bottom',
@@ -107,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
       scrub: true,
       onUpdate: (self) => {
         const eased = (1 - Math.cos(self.progress * Math.PI)) / 2;
-        fadeBottom.style.setProperty('--aura-ry-b', (68 - eased * 66) + '%');
+        fadeBottom.style.setProperty('--aura-ry-b', (2 + eased * 66) + '%');
       },
     });
   }
