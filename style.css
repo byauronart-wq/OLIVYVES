@@ -170,10 +170,24 @@ a{ color:inherit; text-decoration:none; }
 }
 /* efeito "aura" — uma faixa horizontal larga e muito desfocada que se abre a
    partir do centro (--aura-ry, controlado pelo script.js), sem núcleo sólido
-   em lado nenhum — a mesma qualidade das próprias peças AURON. */
+   em lado nenhum — a mesma qualidade das próprias peças AURON.
+   11 pontos em curva de cosseno (não 2 com interpolação linear) — só 2 pontos
+   dava uma mudança de ritmo abrupta exatamente onde o desfoque começava,
+   visível como uma aresta. A curva tem derivada zero nos dois extremos. */
 .gallery-fade--top{
   top:0;
-  background:radial-gradient(ellipse 220% var(--aura-ry, 2%) at 50% 50%, transparent 15%, var(--bg) 100%);
+  background:radial-gradient(ellipse 220% var(--aura-ry, 2%) at 50% 50%,
+    rgba(11,10,13,0) 0%,
+    rgba(11,10,13,.0245) 10%,
+    rgba(11,10,13,.0955) 20%,
+    rgba(11,10,13,.206) 30%,
+    rgba(11,10,13,.3455) 40%,
+    rgba(11,10,13,.5) 50%,
+    rgba(11,10,13,.6545) 60%,
+    rgba(11,10,13,.794) 70%,
+    rgba(11,10,13,.9045) 80%,
+    rgba(11,10,13,.976) 90%,
+    rgba(11,10,13,1) 100%);
 }
 .gallery-fade--bottom{ bottom:0; background:var(--bg-2); }
 .gallery-title{
