@@ -82,12 +82,24 @@ document.addEventListener('DOMContentLoaded', () => {
   // sólido em lado nenhum, a mesma qualidade das próprias peças AURON.
   // A curva é aplicada à mão (equivalente a sine.inOut: derivada zero nos
   // dois extremos, funde sem costura no sólido de cada lado).
+  //
+  // O "centro" da elipse (a âncora) fica no REBORDO DE BAIXO de cada
+  // elemento (ver style.css), não a meio dele. O elemento em si é bem mais
+  // alto do que um ecrã (--fade). Se o trigger seguir o elemento inteiro
+  // (do seu topo a entrar até ao seu fundo a sair), a âncora só entra em
+  // vista a meio do scroll — a primeira metade não pode mostrar nada (fica
+  // tudo sólido, seja qual for a curva), e quando a âncora finalmente
+  // aparece o desfoque "salta" já a meio caminho, o que se lê como um corte
+  // súbito em vez de um desvanecer. Corrigido ligando o trigger só ao
+  // REBORDO DE BAIXO do próprio elemento (start/end 'bottom bottom'/'bottom
+  // top') — assim a curva 0→1 cobre exatamente a travessia da âncora pelo
+  // ecrã, sem scroll morto antes e sem salto.
   const fadeTop = document.querySelector('.gallery-fade--top');
   const fadeBottom = document.querySelector('.gallery-fade--bottom');
   if (fadeTop) {
     ScrollTrigger.create({
       trigger: fadeTop,
-      start: 'top bottom',
+      start: 'bottom bottom',
       end: 'bottom top',
       scrub: true,
       onUpdate: (self) => {
@@ -101,13 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   if (fadeBottom) {
     // mesma curva e a mesma âncora (rebordo de baixo) que o topo — só as
-    // cores em style.css estão trocadas. Crescer, não encolher, é o que faz
-    // o scroll "apanhar" a zona de desfoque; a testar ao contrário, a maior
-    // parte do ecrã ficava sólida com só uma réstia de desfoque, porque a
-    // janela do scroll ultrapassa a âncora depressa demais.
+    // cores em style.css estão trocadas.
     ScrollTrigger.create({
       trigger: fadeBottom,
-      start: 'top bottom',
+      start: 'bottom bottom',
       end: 'bottom top',
       scrub: true,
       onUpdate: (self) => {
