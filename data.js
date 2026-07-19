@@ -87,7 +87,7 @@ window.CATALOG = {
       // tema (cores) desta coleção — quente, luz baixa, entardecer
       theme: {
         bg: '#0b0a0d', bg2: '#131116', ink: '#f3efe9',
-        accent: '#d98f5a', accent2: '#7f7bd8',
+        accent: '#c9703d', accent2: '#7f7bd8',
       },
 
       // ficha técnica partilhada por todas as peças da coleção

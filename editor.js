@@ -60,7 +60,7 @@ function newCollection() {
     mode: 'grelha',
     tagline: { pt: '', en: '' },
     description: { pt: '', en: '' },
-    theme: { accent: '#d98f5a' },
+    theme: { accent: '#c9703d' },
     material: { pt: '', en: '' },
     productionTime: { pt: '2 a 3 semanas', en: '2 to 3 weeks' },
     included: { pt: [], en: [] },
@@ -141,7 +141,7 @@ function render() {
           <option value="grelha"${col.mode === 'grelha' ? ' selected' : ''}>Grelha (loja simples)</option>
           <option value="imersivo"${col.mode === 'imersivo' ? ' selected' : ''}>Imersivo (página própria)</option>
         </select></label>
-        <label>Cor de destaque<input type="color" data-c="${ci}" data-field="accent" value="${esc(col.theme?.accent || '#d98f5a')}"></label>
+        <label>Cor de destaque<input type="color" data-c="${ci}" data-field="accent" value="${esc(col.theme?.accent || '#c9703d')}"></label>
       </div>
 
       <div class="ed-sizes">

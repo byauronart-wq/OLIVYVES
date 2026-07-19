@@ -3,7 +3,7 @@
   --bg-2: #131116;
   --ink: #f3efe9;
   --ink-dim: #a9a3a0;
-  --accent: #d98f5a;
+  --accent: #c9703d; /* era #d98f5a — lia a amarelo em texto fino sobre preto; mais escuro/saturado lê claramente laranja/terracota */
   --accent-2: #7f7bd8;
   --serif: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -158,7 +158,7 @@ a{ color:inherit; text-decoration:none; }
    (o mesmo branco-quente usado como texto no resto do site), texto = var(--bg)
    (o mesmo quase-preto usado como fundo no resto do site). */
 .gallery{
-  --fade: clamp(50rem,130vh,80rem);
+  --fade: clamp(30rem,80vh,50rem);
   position:relative; background:var(--ink); color:var(--bg);
   padding:0;
 }
@@ -166,7 +166,7 @@ a{ color:inherit; text-decoration:none; }
    conteúdo custava scroll a mais — encurta as zonas de transição para cerca
    de metade, mantendo o mesmo desvanecer. */
 @media (max-width:640px){
-  .gallery{ --fade: clamp(26rem,68vh,38rem); }
+  .gallery{ --fade: clamp(16rem,44vh,24rem); }
 }
 /* zona de transição: gradiente ESTÁTICO pintado no próprio fundo — nada de
    animação por scroll. O desvanecer está sempre lá; o que se vê é
@@ -419,7 +419,7 @@ footer p{ color:var(--ink-dim); font-size:.8rem; }
 .chat-send:disabled{ opacity:.6; cursor:default; }
 .chat-success{
   color:var(--ink); font-weight:300; line-height:1.6; font-size:.92rem;
-  padding:1rem; background:rgba(217,143,90,.1); border:1px solid rgba(217,143,90,.3); border-radius:8px;
+  padding:1rem; background:rgba(201,112,61,.1); border:1px solid rgba(201,112,61,.3); border-radius:8px;
 }
 .chat-success.is-error{ background:rgba(220,90,90,.1); border-color:rgba(220,90,90,.35); }
 
@@ -882,7 +882,7 @@ body.cart-open{ overflow:hidden; }
 .order-status-icon{
   width:52px; height:52px; border-radius:50%; margin-bottom:1.6rem;
   display:flex; align-items:center; justify-content:center;
-  background:rgba(217,143,90,.12); border:1px solid rgba(217,143,90,.35); color:var(--accent);
+  background:rgba(201,112,61,.12); border:1px solid rgba(201,112,61,.35); color:var(--accent);
   font-size:1.4rem;
 }
 .order-status-icon.is-cancel{ background:rgba(220,90,90,.1); border-color:rgba(220,90,90,.35); color:#e08a8a; }
