@@ -31,6 +31,7 @@ async function startCheckout() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         currency: Currency.get(),
+        lang,
         items: items.map((i) => ({
           pieceId: i.pieceId,
           pieceName: i.pieceName,
