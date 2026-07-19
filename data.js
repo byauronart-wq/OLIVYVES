@@ -23,7 +23,7 @@ window.CONFIG = {
     // URL da função serverless que cria a sessão de checkout Stripe
     // (ver checkout-api/README.md para o deploy). Enquanto estiver vazio,
     // o botão "Finalizar encomenda" usa um email de recurso com o carrinho completo.
-    checkoutApi: '',
+    checkoutApi: 'https://checkout-api-seven.vercel.app/api/create-checkout-session',
   },
 
   // Preços do catálogo estão sempre em EUR. USD é só para mostrar o preço ao
