@@ -76,55 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- transição escuro→claro da galeria: efeito "aura" ---
-  // Uma faixa horizontal larga e muito desfocada (--aura-ry em style.css)
-  // abre-se a partir do centro, revelando o creme por baixo — sem núcleo
-  // sólido em lado nenhum, a mesma qualidade das próprias peças AURON.
-  // A curva é aplicada à mão (equivalente a sine.inOut: derivada zero nos
-  // dois extremos, funde sem costura no sólido de cada lado).
-  //
-  // O "centro" da elipse (a âncora) fica no REBORDO DE BAIXO de cada
-  // elemento (ver style.css), não a meio dele. O elemento em si é bem mais
-  // alto do que um ecrã (--fade). Se o trigger seguir o elemento inteiro
-  // (do seu topo a entrar até ao seu fundo a sair), a âncora só entra em
-  // vista a meio do scroll — a primeira metade não pode mostrar nada (fica
-  // tudo sólido, seja qual for a curva), e quando a âncora finalmente
-  // aparece o desfoque "salta" já a meio caminho, o que se lê como um corte
-  // súbito em vez de um desvanecer. Corrigido ligando o trigger só ao
-  // REBORDO DE BAIXO do próprio elemento (start/end 'bottom bottom'/'bottom
-  // top') — assim a curva 0→1 cobre exatamente a travessia da âncora pelo
-  // ecrã, sem scroll morto antes e sem salto.
-  const fadeTop = document.querySelector('.gallery-fade--top');
-  const fadeBottom = document.querySelector('.gallery-fade--bottom');
-  if (fadeTop) {
-    ScrollTrigger.create({
-      trigger: fadeTop,
-      start: 'bottom bottom',
-      end: 'bottom top',
-      scrub: true,
-      onUpdate: (self) => {
-        // ease-out (rápido no início, pousa devagar no fim) — não a curva
-        // simétrica de antes, que era tão lenta a arrancar que o desfoque
-        // ficava espremido a quase nada por boa parte do scroll.
-        const eased = Math.sin(self.progress * Math.PI / 2);
-        fadeTop.style.setProperty('--aura-ry', (14 + eased * 54) + '%');
-      },
-    });
-  }
-  if (fadeBottom) {
-    // mesma curva e a mesma âncora (rebordo de baixo) que o topo — só as
-    // cores em style.css estão trocadas.
-    ScrollTrigger.create({
-      trigger: fadeBottom,
-      start: 'bottom bottom',
-      end: 'bottom top',
-      scrub: true,
-      onUpdate: (self) => {
-        const eased = Math.sin(self.progress * Math.PI / 2);
-        fadeBottom.style.setProperty('--aura-ry-b', (14 + eased * 54) + '%');
-      },
-    });
-  }
+  // As transições escuro↔claro da galeria são gradientes ESTÁTICOS em
+  // style.css (.gallery-fade--top/--bottom) — sem animação por scroll.
+  // Três iterações de gradientes animados via ScrollTrigger produziram
+  // sempre artefactos (linhas duras, zonas mortas); o fundo pintado de
+  // forma fixa não tem estados intermédios para falhar.
 
   // gallery scenes (a sala clara) usam o mesmo fade-up simples de [data-reveal]
   // que o resto do site — o tilt 3D dramático de antes não combinava com o

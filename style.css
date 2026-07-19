@@ -162,60 +162,46 @@ a{ color:inherit; text-decoration:none; }
   position:relative; background:var(--ink); color:var(--bg);
   padding:0;
 }
-/* zona de transição bem mais longa (quase um ecrã inteiro), animada pelo
-   próprio scroll via GSAP (ver script.js) em vez de um gradiente CSS fixo —
-   a distância maior é o que mais ajuda a não parecer um corte. */
+/* zona de transição: gradiente ESTÁTICO pintado no próprio fundo — nada de
+   animação por scroll. O desvanecer está sempre lá; o que se vê é
+   exatamente o que se scrolla, por isso não pode haver saltos, linhas nem
+   "sólido a mais" antes de começar. 11 pontos em curva de cosseno (não 2
+   com interpolação linear) — derivada zero nos dois extremos, funde sem
+   costura no sólido de cada lado. */
 .gallery-fade{
   position:absolute; left:0; right:0; height:var(--fade); z-index:0; pointer-events:none;
 }
-/* efeito "aura" — uma faixa horizontal larga e muito desfocada.
-   O centro do círculo está ANCORADO NO REBORDO do elemento (100% = rebordo
-   de baixo aqui), não a meio — com o centro a meio, o gradiente ficava
-   escuro→claro→escuro (simétrico para os dois lados), e por isso "voltava
-   a preto" depois do feixe branco. Ancorado no rebordo, só a METADE de cima
-   do círculo cabe dentro do elemento: fica sempre escuro em cima → claro em
-   baixo, nunca inverte. 11 pontos em curva de cosseno (não 2 com
-   interpolação linear) — derivada zero nos dois extremos, sem aresta.
-   Valor inicial de 14% (não perto de 0) — com a elipse quase fechada, a
-   zona de desfoque fica espremida a 1-2px e lê-se como uma linha dura, não
-   como uma névoa; a curva de crescimento em script.js também passou a
-   ease-out para abrir depressa logo no início do scroll. */
 .gallery-fade--top{
   top:0;
-  background:radial-gradient(ellipse 220% var(--aura-ry, 14%) at 50% 100%,
-    rgba(11,10,13,0) 0%,
-    rgba(11,10,13,.0245) 10%,
-    rgba(11,10,13,.0955) 20%,
-    rgba(11,10,13,.206) 30%,
-    rgba(11,10,13,.3455) 40%,
+  background:linear-gradient(180deg,
+    rgba(11,10,13,1) 0%,
+    rgba(11,10,13,.976) 10%,
+    rgba(11,10,13,.9045) 20%,
+    rgba(11,10,13,.794) 30%,
+    rgba(11,10,13,.6545) 40%,
     rgba(11,10,13,.5) 50%,
-    rgba(11,10,13,.6545) 60%,
-    rgba(11,10,13,.794) 70%,
-    rgba(11,10,13,.9045) 80%,
-    rgba(11,10,13,.976) 90%,
-    rgba(11,10,13,1) 100%);
+    rgba(11,10,13,.3455) 60%,
+    rgba(11,10,13,.206) 70%,
+    rgba(11,10,13,.0955) 80%,
+    rgba(11,10,13,.0245) 90%,
+    rgba(11,10,13,0) 100%);
 }
-/* mesmo efeito "aura", ao contrário: --aura-ry-b começa grande (tudo creme
-   visível) e cresce (fecha para o escuro seguinte). Centro ancorado no MESMO
-   rebordo que o topo (100%, o rebordo de baixo) — não no de cima: o scroll
-   sempre mostra o topo do elemento primeiro e o fundo por último, tal como
-   na transição de cima, por isso o ponto que se aproxima da câmara à medida
-   que se avança tem de ser o de baixo aqui também. Só as CORES são ao
-   contrário (escuro junto à âncora, não claro). Ver script.js. */
+/* o espelho: creme → escuro da secção seguinte (--bg-2, o fundo de
+   .material). O rebordo de baixo tem de bater certo com essa cor. */
 .gallery-fade--bottom{
   bottom:0;
-  background:radial-gradient(ellipse 220% var(--aura-ry-b, 14%) at 50% 100%,
-    rgba(19,17,22,1) 0%,
-    rgba(19,17,22,.976) 10%,
-    rgba(19,17,22,.9045) 20%,
-    rgba(19,17,22,.794) 30%,
-    rgba(19,17,22,.6545) 40%,
+  background:linear-gradient(180deg,
+    rgba(19,17,22,0) 0%,
+    rgba(19,17,22,.0245) 10%,
+    rgba(19,17,22,.0955) 20%,
+    rgba(19,17,22,.206) 30%,
+    rgba(19,17,22,.3455) 40%,
     rgba(19,17,22,.5) 50%,
-    rgba(19,17,22,.3455) 60%,
-    rgba(19,17,22,.206) 70%,
-    rgba(19,17,22,.0955) 80%,
-    rgba(19,17,22,.0245) 90%,
-    rgba(19,17,22,0) 100%);
+    rgba(19,17,22,.6545) 60%,
+    rgba(19,17,22,.794) 70%,
+    rgba(19,17,22,.9045) 80%,
+    rgba(19,17,22,.976) 90%,
+    rgba(19,17,22,1) 100%);
 }
 .gallery-title{
   position:relative; z-index:1; text-align:center;
