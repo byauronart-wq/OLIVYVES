@@ -77,7 +77,11 @@
 
 <!-- HERO AURON -->
 <section class="hero" id="top">
-  <video class="hero-bg" autoplay muted loop playsinline webkit-playsinline poster="assets/gallery/deep blue circle/hero-terracota.jpg">
+  <video class="hero-bg" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="assets/gallery/deep blue circle/hero-terracota.jpg">
+    <!-- variante leve (640px, ~276KB vs 1,6MB) para telemóveis — o vídeo
+         grande demorava a arrancar em dados móveis; o browser só carrega
+         UMA das duas fontes, conforme a media query. -->
+    <source src="assets/video/hero-auron-mobile.mp4" type="video/mp4" media="(max-width: 700px)">
     <source src="assets/video/hero-auron.mp4" type="video/mp4">
   </video>
   <div class="hero-veil"></div>
