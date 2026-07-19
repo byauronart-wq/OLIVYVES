@@ -38,7 +38,6 @@ muda os valores:
   shape: 'circular',                           // ver Passo 3 — a que formato pertence na galeria
   gallery: {
     image: 'assets/gallery/nome-da-peca/em-contexto.jpg',
-    ar: '4/5',                                 // proporção da moldura na galeria
     caption: { pt: 'Legenda curta.', en: 'Short caption.' },
   },
 },
@@ -49,6 +48,12 @@ A galeria do `index.html` já não lista as peças uma a uma: agrupa-as por
 para trocar entre as peças desse mesmo formato. Adicionar uma peça a um
 formato que já existe faz com que a seta apareça sozinha (com 1 peça só,
 não há seta nem pontos — fica limpo).
+
+**Nota sobre a proporção da moldura:** não se define por peça — vem do
+formato (`shapeLabels[shape].ar`, ver Passo 3). É de propósito: se cada
+peça tivesse a sua própria proporção, a moldura mudava de tamanho ao
+trocar de peça com a seta, o que salta muito ao olho. Todas as peças do
+mesmo formato usam sempre a mesma moldura.
 
 ## Passo 3 — Escolher a tabela de tamanhos e o formato
 
@@ -65,8 +70,9 @@ No topo de `data.js` existem as tabelas de preço por corte, e mais abaixo
   e o `shape:` correspondente da tabela acima.
 - **Formato novo** (ex.: quadrado) → cria a constante de tamanhos (como as
   outras) E acrescenta uma entrada nova em `shapeOrder`/`shapeLabels` (perto
-  do topo do bloco da coleção AURON) com a chave e o nome em PT/EN. Depois
-  usa essa chave no `shape:` da peça.
+  do topo do bloco da coleção AURON) com a chave, o nome em PT/EN e a
+  proporção da moldura (`ar`, ex.: `'4/5'` para retrato, `'1/1'` para
+  quadrado). Depois usa essa chave no `shape:` da peça.
 
 ## Passo 4 — Publicar
 
@@ -81,7 +87,8 @@ O site atualiza em ~1-2 minutos (GitHub Pages).
 ## Notas
 
 - **`ar` (aspect ratio)**: `'4/5'` para retrato, `'1/1'` para quadrado/redonda,
-  `'5/4'` para paisagem — é só a moldura da cena na galeria.
+  `'5/4'` para paisagem — vive em `shapeLabels[shape].ar` (por FORMATO, não
+  por peça, ver Passo 2).
 - **Ordem dos formatos na galeria** = ordem da lista `shapeOrder`. **Ordem
   das peças dentro de um formato** = ordem em que aparecem em `pieces`.
 - **Coleções futuras**: copia o bloco inteiro da coleção AURON em

@@ -118,12 +118,18 @@ window.CATALOG = {
       // simplesmente não aparece. Para criar um formato novo (ex.: quadrada),
       // acrescenta a chave aqui, em shapeLabels, e usa-a no campo "shape" das
       // peças abaixo.
+      //
+      // "ar" (proporção da moldura) vive AQUI, por formato — não em cada
+      // peça — de propósito: se cada peça tivesse a sua própria "ar", a
+      // moldura mudava de tamanho ao trocar de peça com a seta lateral
+      // dentro do mesmo formato, o que salta muito ao olho. Todas as peças
+      // de "circular" usam sempre a mesma "ar", etc.
       shapeOrder: ['circular', 'elipse', 'rect-h', 'rect-v'],
       shapeLabels: {
-        circular: { pt: 'Circular', en: 'Circular' },
-        elipse: { pt: 'Elipse', en: 'Ellipse' },
-        'rect-h': { pt: 'Retangular horizontal', en: 'Horizontal rectangle' },
-        'rect-v': { pt: 'Retangular vertical', en: 'Vertical rectangle' },
+        circular: { pt: 'Circular', en: 'Circular', ar: '4/5' },
+        elipse: { pt: 'Elipse', en: 'Ellipse', ar: '4/5' },
+        'rect-h': { pt: 'Retangular horizontal', en: 'Horizontal rectangle', ar: '4/5' },
+        'rect-v': { pt: 'Retangular vertical', en: 'Vertical rectangle', ar: '4/5' },
       },
 
       // NOTA: os caminhos das imagens seguem os nomes das pastas em assets/shop/
@@ -134,8 +140,8 @@ window.CATALOG = {
       //  - shape: a que formato pertence (uma das chaves de shapeLabels acima)
       //  - gallery: como a peça aparece na galeria do index.html
       //      image   → foto em contexto (parede/sala)
-      //      ar      → proporção da moldura na galeria ('4/5', '1/1', …)
       //      caption → legenda curta, tom de ficha de museu
+      //      (a proporção da moldura vem de shapeLabels[shape].ar, não daqui)
       // A galeria do index.html gera-se sozinha a partir desta lista
       // (ver script.js) — adicionar uma peça aqui é adicioná-la ao site todo.
       pieces: [
@@ -155,7 +161,6 @@ window.CATALOG = {
           shape: 'circular',
           gallery: {
             image: 'assets/gallery/deep blue circle/gallery-blue-circle.jpg',
-            ar: '4/5',
             caption: { pt: 'Degradê azul sobre negro. Espaço aberto.', en: 'Blue gradient over black. Open space.' },
           },
         },
@@ -175,7 +180,6 @@ window.CATALOG = {
           shape: 'rect-h',
           gallery: {
             image: 'assets/gallery/horizontal sunset/gallery-sunset-horizontal.jpg',
-            ar: '4/5',
             caption: { pt: 'Crepúsculo suspenso em acrílico.', en: 'Dusk, suspended in acrylic.' },
           },
         },
@@ -194,7 +198,6 @@ window.CATALOG = {
           shape: 'elipse',
           gallery: {
             image: 'assets/gallery/ellipse sun/entrance_persianas_wall_2026-07-13-19-06-22.jpg',
-            ar: '4/5',
             caption: { pt: 'Oval quente. A luz no início do dia.', en: 'A warm oval. First light of day.' },
           },
         },
@@ -214,7 +217,6 @@ window.CATALOG = {
           shape: 'rect-v',
           gallery: {
             image: 'assets/gallery/cosmic aura/gallery_moody_wall_2026-07-14-07-18-03.jpg',
-            ar: '4/5',
             caption: { pt: 'Violeta profundo. Halo em expansão.', en: 'Deep violet. A halo in expansion.' },
           },
         },
@@ -234,7 +236,6 @@ window.CATALOG = {
           shape: 'circular',
           gallery: {
             image: 'assets/gallery/cosmic circle/gallery-white-wall.jpg',
-            ar: '1/1',
             caption: { pt: 'Círculo escuro. Centro em fuga.', en: 'Dark circle. A vanishing centre.' },
           },
         },

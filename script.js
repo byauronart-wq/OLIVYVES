@@ -112,7 +112,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const shopHref = 'loja.html?col=auron&piece=' + encodeURIComponent(p.id);
         const name = p.name[l] || p.name.pt;
 
-        scene.style.setProperty('--ar', g.ar || '4/5');
+        // "ar" vem do FORMATO (shapeLabels), não da peça — assim a moldura
+        // nunca muda de tamanho ao trocar de peça com a seta dentro do
+        // mesmo formato.
+        scene.style.setProperty('--ar', (labelMap && labelMap.ar) || '4/5');
         eyebrow.textContent = (labelMap && (labelMap[l] || labelMap.pt)) || shapeKey;
         img.src = g.image;
         img.alt = name;
