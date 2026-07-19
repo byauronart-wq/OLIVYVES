@@ -3,6 +3,78 @@
 document.addEventListener('DOMContentLoaded', () => {
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // --- galeria gerada a partir de data.js ---
+  // As cenas das peças não estão no HTML: nascem daqui, da lista
+  // CATALOG.collections[].pieces (campo "gallery" de cada peça). Adicionar
+  // uma peça em data.js adiciona-a automaticamente à galeria e à loja.
+  // Tem de correr ANTES do registo dos [data-reveal] mais abaixo, senão as
+  // cenas novas ficavam sem animação de entrada.
+  renderGalleryScenes();
+
+  function renderGalleryScenes() {
+    const container = document.getElementById('galeria');
+    const col = window.getCollection && getCollection('auron');
+    if (!container || !col) return;
+    const anchor = container.querySelector('.gallery-cta');
+    const lang = () => (typeof getLang === 'function' ? getLang() : 'pt');
+    const sceneRefs = [];
+
+    col.pieces.forEach((p, i) => {
+      const g = p.gallery;
+      if (!g) return;
+      const num = String(i + 1).padStart(2, '0');
+      const shopHref = 'loja.html?col=auron&piece=' + encodeURIComponent(p.id);
+
+      const scene = document.createElement('div');
+      scene.className = 'scene';
+      scene.style.setProperty('--ar', g.ar || '4/5');
+
+      const artWrap = document.createElement('div');
+      artWrap.className = 'scene-art-wrap';
+      artWrap.setAttribute('data-reveal', '');
+      const artLink = document.createElement('a');
+      artLink.className = 'scene-art';
+      artLink.href = shopHref;
+      const img = document.createElement('img');
+      img.src = g.image;
+      artLink.appendChild(img);
+      artWrap.appendChild(artLink);
+
+      const text = document.createElement('div');
+      text.className = 'scene-text';
+      text.setAttribute('data-reveal', '');
+      const numEl = document.createElement('span');
+      numEl.className = 'num';
+      numEl.textContent = num;
+      const h3 = document.createElement('h3');
+      const cap = document.createElement('p');
+      const cta = document.createElement('a');
+      cta.className = 'scene-cta';
+      cta.href = shopHref;
+      text.append(numEl, h3, cap, cta);
+
+      scene.append(artWrap, text);
+      container.insertBefore(scene, anchor);
+      sceneRefs.push({ p, g, img, artLink, h3, cap, cta });
+    });
+
+    // textos (nome, legenda, CTA) seguem o idioma ativo — aplicados agora e
+    // reaplicados sempre que o idioma muda no dropdown.
+    function applyTexts() {
+      const l = lang();
+      sceneRefs.forEach(({ p, g, img, artLink, h3, cap, cta }) => {
+        const name = p.name[l] || p.name.pt;
+        h3.textContent = name;
+        cap.textContent = (g.caption && (g.caption[l] || g.caption.pt)) || '';
+        cta.textContent = typeof t === 'function' ? t('scene.cta') : 'Ver na loja →';
+        img.alt = name;
+        artLink.setAttribute('aria-label', name);
+      });
+    }
+    applyTexts();
+    document.addEventListener('auron:langchange', applyTexts);
+  }
+
   // --- garantir autoplay do vídeo do hero em mobile ---
   // Safari/iOS por vezes ignora o atributo autoplay (ex: Modo de Poupança de Dados,
   // Baixa Energia) e mostra o botão de play nativo. Forçamos o play aqui e voltamos

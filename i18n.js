@@ -31,16 +31,8 @@ const I18N = {
     'gallery.title': 'A coleção',
     'gallery.cta': 'Adquirir uma peça →',
 
-    'piece.01.h': 'Profundidade',
-    'piece.01.p': 'Degradê azul sobre negro. Espaço aberto.',
-    'piece.02.h': 'Horizonte',
-    'piece.02.p': 'Crepúsculo suspenso em acrílico.',
-    'piece.03.h': 'Nascente',
-    'piece.03.p': 'Oval quente. A luz no início do dia.',
-    'piece.04.h': 'Cósmica',
-    'piece.04.p': 'Violeta profundo. Halo em expansão.',
-    'piece.05.h': 'Órbita',
-    'piece.05.p': 'Círculo escuro. Centro em fuga.',
+    /* Os nomes e legendas das peças vivem em data.js (campo gallery.caption
+       de cada peça) — a galeria gera-se de lá, ver script.js. */
 
     'material.eyebrow': 'O material',
     'material.title': 'Acrílico translúcido.<br><span>Sem luz própria.</span>',
@@ -117,16 +109,8 @@ const I18N = {
     'gallery.title': 'The collection',
     'gallery.cta': 'Acquire a piece →',
 
-    'piece.01.h': 'Depth',
-    'piece.01.p': 'Blue gradient over black. Open space.',
-    'piece.02.h': 'Horizon',
-    'piece.02.p': 'Dusk, suspended in acrylic.',
-    'piece.03.h': 'Rising',
-    'piece.03.p': 'A warm oval. First light of day.',
-    'piece.04.h': 'Cosmic',
-    'piece.04.p': 'Deep violet. A halo in expansion.',
-    'piece.05.h': 'Orbit',
-    'piece.05.p': 'Dark circle. A vanishing centre.',
+    /* Piece names and captions live in data.js (each piece's gallery.caption)
+       — the gallery renders from there, see script.js. */
 
     'material.eyebrow': 'The material',
     'material.title': 'Translucent acrylic.<br><span>No light of its own.</span>',

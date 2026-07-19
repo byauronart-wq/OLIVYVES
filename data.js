@@ -111,8 +111,17 @@ window.CATALOG = {
         ],
       },
 
-      // NOTA: os caminhos das imagens seguem os nomes das pastas em assets/shop/.
-      // Se renomeares uma pasta, actualiza aqui os caminhos dessa peça (ou pede-me).
+      // NOTA: os caminhos das imagens seguem os nomes das pastas em assets/shop/
+      // e assets/gallery/. Se renomeares uma pasta, actualiza aqui os caminhos.
+      //
+      // Cada peça tem duas "faces":
+      //  - images: fotos usadas na LOJA (1ª = capa do cartão)
+      //  - gallery: como a peça aparece na galeria do index.html
+      //      image   → foto em contexto (parede/sala)
+      //      ar      → proporção da moldura na galeria ('4/5', '1/1', …)
+      //      caption → legenda curta, tom de ficha de museu
+      // A galeria do index.html gera-se sozinha a partir desta lista
+      // (ver script.js) — adicionar uma peça aqui é adicioná-la ao site todo.
       pieces: [
         {
           id: 'profundidade',
@@ -127,6 +136,11 @@ window.CATALOG = {
             'assets/shop/deep blue circle/hero-terracota.jpg',
           ],
           sizes: ROUND_SIZES,
+          gallery: {
+            image: 'assets/gallery/deep blue circle/gallery-blue-circle.jpg',
+            ar: '4/5',
+            caption: { pt: 'Degradê azul sobre negro. Espaço aberto.', en: 'Blue gradient over black. Open space.' },
+          },
         },
         {
           id: 'horizonte',
@@ -141,6 +155,11 @@ window.CATALOG = {
             'assets/shop/horizontal sunset/office horizontal sunset-horizontal office-room.png',
           ],
           sizes: RECT_SIZES,
+          gallery: {
+            image: 'assets/gallery/horizontal sunset/gallery-sunset-horizontal.jpg',
+            ar: '4/5',
+            caption: { pt: 'Crepúsculo suspenso em acrílico.', en: 'Dusk, suspended in acrylic.' },
+          },
         },
         {
           id: 'nascente',
@@ -154,6 +173,11 @@ window.CATALOG = {
             'assets/shop/ellipse sun/entrance_persianas_wall_2026-07-13-19-06-22.png',
           ],
           sizes: ELLIPSE_SIZES,
+          gallery: {
+            image: 'assets/gallery/ellipse sun/entrance_persianas_wall_2026-07-13-19-06-22.png',
+            ar: '4/5',
+            caption: { pt: 'Oval quente. A luz no início do dia.', en: 'A warm oval. First light of day.' },
+          },
         },
         {
           id: 'cosmica',
@@ -168,6 +192,11 @@ window.CATALOG = {
             'assets/shop/cosmic aura/dramatic_room_wall_2026-07-14-07-14-55.png',
           ],
           sizes: RECT_SIZES,
+          gallery: {
+            image: 'assets/gallery/cosmic aura/gallery_moody_wall_2026-07-14-07-18-03.png',
+            ar: '4/5',
+            caption: { pt: 'Violeta profundo. Halo em expansão.', en: 'Deep violet. A halo in expansion.' },
+          },
         },
         {
           id: 'orbita',
@@ -182,6 +211,11 @@ window.CATALOG = {
             'assets/shop/cosmic circle/gallery-industrial.jpg',
           ],
           sizes: ROUND_SIZES,
+          gallery: {
+            image: 'assets/gallery/cosmic circle/gallery-white-wall.jpg',
+            ar: '1/1',
+            caption: { pt: 'Círculo escuro. Centro em fuga.', en: 'Dark circle. A vanishing centre.' },
+          },
         },
       ],
     },
