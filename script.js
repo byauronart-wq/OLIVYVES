@@ -48,24 +48,31 @@ document.addEventListener('DOMContentLoaded', () => {
       numEl.textContent = num;
       const h3 = document.createElement('h3');
       const cap = document.createElement('p');
+      const from = document.createElement('p');
+      from.className = 'scene-from';
       const cta = document.createElement('a');
       cta.className = 'scene-cta';
       cta.href = shopHref;
-      text.append(numEl, h3, cap, cta);
+      text.append(numEl, h3, cap, from, cta);
 
       scene.append(artWrap, text);
       container.insertBefore(scene, anchor);
-      sceneRefs.push({ p, g, img, artLink, h3, cap, cta });
+      sceneRefs.push({ p, g, img, artLink, h3, cap, from, cta });
     });
 
     // textos (nome, legenda, CTA) seguem o idioma ativo — aplicados agora e
     // reaplicados sempre que o idioma muda no dropdown.
     function applyTexts() {
       const l = lang();
-      sceneRefs.forEach(({ p, g, img, artLink, h3, cap, cta }) => {
+      sceneRefs.forEach(({ p, g, img, artLink, h3, cap, from, cta }) => {
         const name = p.name[l] || p.name.pt;
         h3.textContent = name;
         cap.textContent = (g.caption && (g.caption[l] || g.caption.pt)) || '';
+        // "desde 249 €" — âncora de preço discreta, na moeda ativa
+        if (window.Currency && Array.isArray(p.sizes) && p.sizes.length) {
+          const minEUR = Math.min(...p.sizes.map((s) => s.price));
+          from.textContent = (typeof t === 'function' ? t('shop.from') : 'desde') + ' ' + Currency.format(minEUR);
+        }
         cta.textContent = typeof t === 'function' ? t('scene.cta') : 'Ver na loja →';
         img.alt = name;
         artLink.setAttribute('aria-label', name);
@@ -73,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     applyTexts();
     document.addEventListener('auron:langchange', applyTexts);
+    document.addEventListener('auron:currencychange', applyTexts);
   }
 
   // --- garantir autoplay do vídeo do hero em mobile ---

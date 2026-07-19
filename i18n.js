@@ -72,6 +72,7 @@ const I18N = {
     'shop.material': 'Material',
     'shop.close': 'Fechar',
     'shop.of': 'de',
+    'shop.faq_link': 'Dúvidas? FAQ — envios, devoluções, montagem',
 
     /* --- Carrinho / checkout --- */
     'cart.title': 'Carrinho',
@@ -87,6 +88,10 @@ const I18N = {
     'checkout.cancel_title': 'Pagamento cancelado',
     'checkout.cancel_body': 'A encomenda não foi concluída — o carrinho continua guardado, podes tentar de novo quando quiseres.',
     'checkout.back_shop': 'Voltar à loja',
+
+    'notfound.title': 'Esta página não existe.',
+    'notfound.body': 'Ou mudou de sítio, ou o endereço veio com um erro. A coleção continua no mesmo lugar.',
+    'notfound.cta': 'Voltar ao início',
   },
 
   en: {
@@ -150,6 +155,7 @@ const I18N = {
     'shop.material': 'Material',
     'shop.close': 'Close',
     'shop.of': 'of',
+    'shop.faq_link': 'Questions? FAQ — shipping, returns, mounting',
 
     /* --- Cart / checkout --- */
     'cart.title': 'Cart',
@@ -165,6 +171,10 @@ const I18N = {
     'checkout.cancel_title': 'Payment cancelled',
     'checkout.cancel_body': "The order wasn't completed — your cart is still saved, so you can try again whenever you like.",
     'checkout.back_shop': 'Back to the shop',
+
+    'notfound.title': 'This page does not exist.',
+    'notfound.body': 'It either moved, or the address came with a typo. The collection is right where it was.',
+    'notfound.cta': 'Back to the start',
   },
 };
 

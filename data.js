@@ -152,7 +152,7 @@ window.CATALOG = {
           images: [
             'assets/shop/horizontal sunset/horizonte-1-front.jpg',
             'assets/shop/horizontal sunset/gallery-sunset-horizontal.jpg',
-            'assets/shop/horizontal sunset/office horizontal sunset-horizontal office-room.png',
+            'assets/shop/horizontal sunset/office horizontal sunset-horizontal office-room.jpg',
           ],
           sizes: RECT_SIZES,
           gallery: {
@@ -169,12 +169,12 @@ window.CATALOG = {
             en: 'An oval sun in warm tones, ringed in violet. Rising light.',
           },
           images: [
-            'assets/shop/ellipse sun/auron_500x700mm_bleed3mm_300dpi_2026-07-13-20-44-04.png',
-            'assets/shop/ellipse sun/entrance_persianas_wall_2026-07-13-19-06-22.png',
+            'assets/shop/ellipse sun/auron_500x700mm_bleed3mm_300dpi_2026-07-13-20-44-04.jpg',
+            'assets/shop/ellipse sun/entrance_persianas_wall_2026-07-13-19-06-22.jpg',
           ],
           sizes: ELLIPSE_SIZES,
           gallery: {
-            image: 'assets/gallery/ellipse sun/entrance_persianas_wall_2026-07-13-19-06-22.png',
+            image: 'assets/gallery/ellipse sun/entrance_persianas_wall_2026-07-13-19-06-22.jpg',
             ar: '4/5',
             caption: { pt: 'Oval quente. A luz no início do dia.', en: 'A warm oval. First light of day.' },
           },
@@ -187,13 +187,13 @@ window.CATALOG = {
             en: 'Deep violet with a magenta halo — a cosmic aura, vertical.',
           },
           images: [
-            'assets/shop/cosmic aura/auron_cosmic3.png',
-            'assets/shop/cosmic aura/gallery_moody_wall_2026-07-14-07-18-03.png',
-            'assets/shop/cosmic aura/dramatic_room_wall_2026-07-14-07-14-55.png',
+            'assets/shop/cosmic aura/auron_cosmic3.jpg',
+            'assets/shop/cosmic aura/gallery_moody_wall_2026-07-14-07-18-03.jpg',
+            'assets/shop/cosmic aura/dramatic_room_wall_2026-07-14-07-14-55.jpg',
           ],
           sizes: RECT_SIZES,
           gallery: {
-            image: 'assets/gallery/cosmic aura/gallery_moody_wall_2026-07-14-07-18-03.png',
+            image: 'assets/gallery/cosmic aura/gallery_moody_wall_2026-07-14-07-18-03.jpg',
             ar: '4/5',
             caption: { pt: 'Violeta profundo. Halo em expansão.', en: 'Deep violet. A halo in expansion.' },
           },
@@ -206,7 +206,7 @@ window.CATALOG = {
             en: 'A cosmic circle, its core receding — blue and violet in orbit.',
           },
           images: [
-            'assets/shop/cosmic circle/auron_500x500mm_bleed3mm_300dpi_2026-07-04-18-51-25.png',
+            'assets/shop/cosmic circle/auron_500x500mm_bleed3mm_300dpi_2026-07-04-18-51-25.jpg',
             'assets/shop/cosmic circle/gallery-white-wall.jpg',
             'assets/shop/cosmic circle/gallery-industrial.jpg',
           ],
