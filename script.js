@@ -69,6 +69,14 @@ document.addEventListener('DOMContentLoaded', () => {
       artLink.appendChild(img);
       artWrap.appendChild(artLink);
 
+      // as setas vivem dentro de "stage", junto com a imagem — o stage
+      // encolhe à largura real da imagem (não da secção inteira), por isso
+      // as setas ficam sempre coladas à imagem, seja qual for a largura do
+      // ecrã, em vez de presas às margens do ecrã.
+      const stage = document.createElement('div');
+      stage.className = 'scene-stage';
+      stage.append(prevBtn, artWrap, nextBtn);
+
       const text = document.createElement('div');
       text.className = 'scene-text';
       text.setAttribute('data-reveal', '');
@@ -80,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
       cta.className = 'scene-cta';
       text.append(h3, cap, from, cta);
 
-      piece.append(artWrap, text);
+      piece.append(stage, text);
 
       const dots = document.createElement('div');
       dots.className = 'scene-dots';
@@ -93,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return d;
       });
 
-      scene.append(eyebrow, prevBtn, piece, nextBtn, dots);
+      scene.append(eyebrow, piece, dots);
       container.insertBefore(scene, anchor);
 
       let idx = 0;

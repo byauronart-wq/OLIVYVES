@@ -235,21 +235,29 @@ a{ color:inherit; text-decoration:none; }
 }
 .scene-piece{ display:flex; flex-direction:column; align-items:center; transition:opacity .18s ease; }
 .scene-piece.fading{ opacity:0; }
+/* stage encolhe à largura real da imagem (não à da secção inteira) — é
+   isso que deixa as setas coladas à imagem em vez de presas às margens
+   do ecrã, seja qual for a largura da janela. */
+.scene-stage{ position:relative; width:fit-content; max-width:100%; margin:0 auto; }
 /* seta lateral — troca a peça DENTRO do mesmo formato, sem sair da
    composição imersiva nem disparar scroll. Só aparece com 2+ peças no
-   formato (ver script.js); com 1 peça só, fica tudo limpo como hoje. */
+   formato (ver script.js); com 1 peça só, fica tudo limpo como hoje.
+   Sem círculo/fundo — só o traço, com um leve brilho para se ler tanto
+   sobre o creme como sobre a própria imagem (esta pode ficar por baixo
+   da seta em ecrãs estreitos, onde não há folga para a pôr fora). */
 .scene-arrow{
-  position:absolute; top:52%; transform:translateY(-50%);
-  width:46px; height:46px; border-radius:50%; border:1px solid rgba(11,10,13,.14);
-  background:rgba(255,253,249,.9); color:var(--bg); cursor:pointer;
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:32px; height:32px; padding:0; margin:0; border:none; background:none;
+  color:var(--bg); cursor:pointer;
+  filter:drop-shadow(0 0 3px rgba(255,255,255,.9)) drop-shadow(0 1px 1px rgba(255,255,255,.7));
   display:flex; align-items:center; justify-content:center; z-index:2;
   transition:opacity .2s ease, transform .15s ease;
 }
-.scene-arrow:hover{ transform:translateY(-50%) scale(1.07); }
-.scene-arrow.prev{ left:clamp(.6rem,3vw,2.4rem); }
-.scene-arrow.next{ right:clamp(.6rem,3vw,2.4rem); }
+.scene-arrow:hover{ transform:translateY(-50%) scale(1.12); }
+.scene-arrow.prev{ left:-2.3rem; }
+.scene-arrow.next{ right:-2.3rem; }
 .scene-arrow[hidden]{ display:none; }
-.scene-arrow svg{ width:18px; height:18px; }
+.scene-arrow svg{ width:22px; height:22px; }
 .scene-dots{ display:flex; gap:.45rem; justify-content:center; margin-top:1.7rem; }
 .scene-dots[hidden]{ display:none; }
 .scene-dot{
@@ -258,9 +266,10 @@ a{ color:inherit; text-decoration:none; }
 }
 .scene-dot[aria-current="true"]{ background:var(--bg); transform:scale(1.3); }
 @media (max-width:640px){
-  .scene-arrow{ width:38px; height:38px; }
-  .scene-arrow.prev{ left:.3rem; }
-  .scene-arrow.next{ right:.3rem; }
+  .scene-arrow{ width:26px; height:26px; }
+  .scene-arrow.prev{ left:-1.3rem; }
+  .scene-arrow.next{ right:-1.3rem; }
+  .scene-arrow svg{ width:19px; height:19px; }
 }
 .scene-art-wrap{ margin-bottom:2.2rem; }
 .scene-art{
