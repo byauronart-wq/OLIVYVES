@@ -35,6 +35,7 @@ muda os valores:
     'assets/shop/nome-da-peca/mockup-sala.jpg',
   ],
   sizes: ROUND_SIZES,                          // ver Passo 3
+  shape: 'circular',                           // ver Passo 3 — a que formato pertence na galeria
   gallery: {
     image: 'assets/gallery/nome-da-peca/em-contexto.jpg',
     ar: '4/5',                                 // proporção da moldura na galeria
@@ -43,21 +44,29 @@ muda os valores:
 },
 ```
 
-A numeração (01, 02, …) na galeria é automática, pela ordem da lista.
+A galeria do `index.html` já não lista as peças uma a uma: agrupa-as por
+`shape` — uma composição cheia de ecrã por FORMATO, com uma seta lateral
+para trocar entre as peças desse mesmo formato. Adicionar uma peça a um
+formato que já existe faz com que a seta apareça sozinha (com 1 peça só,
+não há seta nem pontos — fica limpo).
 
-## Passo 3 — Escolher a tabela de tamanhos (forma da peça)
+## Passo 3 — Escolher a tabela de tamanhos e o formato
 
-No topo de `data.js` existem as tabelas de preço por corte:
+No topo de `data.js` existem as tabelas de preço por corte, e mais abaixo
+(dentro da coleção) o mapa de formatos da galeria:
 
-| Constante       | Forma                  | Tamanhos atuais |
-|-----------------|------------------------|-----------------|
-| `RECT_SIZES`    | Retângulo (H ou V)     | 70×50 · 57×80 · 100×75 |
-| `ELLIPSE_SIZES` | Elipse                 | 100×60 · 70×40 |
-| `ROUND_SIZES`   | Redonda                | Ø90 · Ø50 |
+| Constante       | `shape:`   | Tamanhos atuais |
+|-----------------|------------|-----------------|
+| `ROUND_SIZES`   | `'circular'` | Ø90 · Ø50 |
+| `ELLIPSE_SIZES` | `'elipse'`   | 100×60 · 70×40 |
+| `RECT_SIZES`    | `'rect-h'` (horizontal) ou `'rect-v'` (vertical) | 70×50 · 57×80 · 100×75 |
 
-- Peça nova de uma forma **existente** → usa a constante certa em `sizes:`.
-- **Forma nova** (ex.: quadrado) → cria uma constante nova ao lado das outras,
-  no mesmo formato, e usa-a. Os preços são os de venda ao cliente, em EUR.
+- Peça nova de uma forma **existente** → usa a constante certa em `sizes:`
+  e o `shape:` correspondente da tabela acima.
+- **Formato novo** (ex.: quadrado) → cria a constante de tamanhos (como as
+  outras) E acrescenta uma entrada nova em `shapeOrder`/`shapeLabels` (perto
+  do topo do bloco da coleção AURON) com a chave e o nome em PT/EN. Depois
+  usa essa chave no `shape:` da peça.
 
 ## Passo 4 — Publicar
 
@@ -73,7 +82,8 @@ O site atualiza em ~1-2 minutos (GitHub Pages).
 
 - **`ar` (aspect ratio)**: `'4/5'` para retrato, `'1/1'` para quadrado/redonda,
   `'5/4'` para paisagem — é só a moldura da cena na galeria.
-- **Ordem na galeria** = ordem da lista `pieces`. Arrasta o bloco para mudar.
+- **Ordem dos formatos na galeria** = ordem da lista `shapeOrder`. **Ordem
+  das peças dentro de um formato** = ordem em que aparecem em `pieces`.
 - **Coleções futuras**: copia o bloco inteiro da coleção AURON em
   `CATALOG.collections`, muda `id`/`name`/`pieces`. Quando existir uma 2ª
   coleção, o portal de escolha de coleções volta a ser ativado (falar comigo

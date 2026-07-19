@@ -111,11 +111,27 @@ window.CATALOG = {
         ],
       },
 
+      // A galeria do index.html agrupa as peças por FORMATO — uma composição
+      // cheia de ecrã por formato, com uma seta lateral para trocar entre as
+      // peças desse mesmo formato (ver renderGalleryScenes em script.js).
+      // shapeOrder define a ordem dos formatos; um formato sem peças nenhumas
+      // simplesmente não aparece. Para criar um formato novo (ex.: quadrada),
+      // acrescenta a chave aqui, em shapeLabels, e usa-a no campo "shape" das
+      // peças abaixo.
+      shapeOrder: ['circular', 'elipse', 'rect-h', 'rect-v'],
+      shapeLabels: {
+        circular: { pt: 'Circular', en: 'Circular' },
+        elipse: { pt: 'Elipse', en: 'Ellipse' },
+        'rect-h': { pt: 'Retangular horizontal', en: 'Horizontal rectangle' },
+        'rect-v': { pt: 'Retangular vertical', en: 'Vertical rectangle' },
+      },
+
       // NOTA: os caminhos das imagens seguem os nomes das pastas em assets/shop/
       // e assets/gallery/. Se renomeares uma pasta, actualiza aqui os caminhos.
       //
       // Cada peça tem duas "faces":
       //  - images: fotos usadas na LOJA (1ª = capa do cartão)
+      //  - shape: a que formato pertence (uma das chaves de shapeLabels acima)
       //  - gallery: como a peça aparece na galeria do index.html
       //      image   → foto em contexto (parede/sala)
       //      ar      → proporção da moldura na galeria ('4/5', '1/1', …)
@@ -136,6 +152,7 @@ window.CATALOG = {
             'assets/shop/deep blue circle/hero-terracota.jpg',
           ],
           sizes: ROUND_SIZES,
+          shape: 'circular',
           gallery: {
             image: 'assets/gallery/deep blue circle/gallery-blue-circle.jpg',
             ar: '4/5',
@@ -155,6 +172,7 @@ window.CATALOG = {
             'assets/shop/horizontal sunset/office horizontal sunset-horizontal office-room.jpg',
           ],
           sizes: RECT_SIZES,
+          shape: 'rect-h',
           gallery: {
             image: 'assets/gallery/horizontal sunset/gallery-sunset-horizontal.jpg',
             ar: '4/5',
@@ -173,6 +191,7 @@ window.CATALOG = {
             'assets/shop/ellipse sun/entrance_persianas_wall_2026-07-13-19-06-22.jpg',
           ],
           sizes: ELLIPSE_SIZES,
+          shape: 'elipse',
           gallery: {
             image: 'assets/gallery/ellipse sun/entrance_persianas_wall_2026-07-13-19-06-22.jpg',
             ar: '4/5',
@@ -192,6 +211,7 @@ window.CATALOG = {
             'assets/shop/cosmic aura/dramatic_room_wall_2026-07-14-07-14-55.jpg',
           ],
           sizes: RECT_SIZES,
+          shape: 'rect-v',
           gallery: {
             image: 'assets/gallery/cosmic aura/gallery_moody_wall_2026-07-14-07-18-03.jpg',
             ar: '4/5',
@@ -211,6 +231,7 @@ window.CATALOG = {
             'assets/shop/cosmic circle/gallery-industrial.jpg',
           ],
           sizes: ROUND_SIZES,
+          shape: 'circular',
           gallery: {
             image: 'assets/gallery/cosmic circle/gallery-white-wall.jpg',
             ar: '1/1',
