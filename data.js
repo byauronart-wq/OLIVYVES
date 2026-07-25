@@ -260,6 +260,25 @@ window.CATALOG = {
           },
         },
         {
+          id: 'nebula',
+          name: { pt: 'Nébula', en: 'Nebula' },
+          desc: {
+            pt: 'Violeta a arder em laranja, magenta a nascer no fundo. Uma nuvem de cor, vertical.',
+            en: 'Violet burning into orange, magenta rising below. A cloud of colour, vertical.',
+          },
+          images: [
+            'assets/shop/nebula/nebula-front.png',
+            'assets/shop/nebula/nebula-terracota.jpg',
+            'assets/shop/nebula/nebula-galeria.jpg',
+          ],
+          sizes: RECT_SIZES,
+          shape: 'rect-v',
+          gallery: {
+            image: 'assets/gallery/nebula/nebula-terracota.jpg',
+            caption: { pt: 'Uma nuvem de cor, em suspensão.', en: 'A cloud of colour, suspended.' },
+          },
+        },
+        {
           id: 'orbita',
           name: { pt: 'Órbita', en: 'Orbit' },
           desc: {
