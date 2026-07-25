@@ -24,8 +24,14 @@ const Currency = {
   },
   convert(eurAmount) {
     const cfg = window.CONFIG.currency || { rates: { EUR: 1 } };
-    const rate = cfg.rates[this.get()] || 1;
-    return eurAmount * rate;
+    const code = this.get();
+    const rate = cfg.rates[code] || 1;
+    const converted = eurAmount * rate;
+    // preço na moeda base (EUR) fica exato; qualquer OUTRA moeda é uma
+    // conversão aproximada só para mostrar, por isso arredonda-se à dezena
+    // mais próxima (279€→$301.32 não é um preço, é ruído de câmbio)
+    if (code === (cfg.base || 'EUR')) return converted;
+    return Math.round(converted / 10) * 10;
   },
   format(eurAmount) {
     const cfg = window.CONFIG.currency || { symbols: { EUR: '€' } };
