@@ -184,21 +184,41 @@ window.CATALOG = {
           },
         },
         {
-          id: 'nascente',
-          name: { pt: 'Nascente', en: 'Rising' },
+          id: 'eclipse',
+          name: { pt: 'Eclipse', en: 'Eclipse' },
           desc: {
-            pt: 'Sol oval em tons quentes, com auréola violeta. Luz que nasce.',
-            en: 'An oval sun in warm tones, ringed in violet. Rising light.',
+            pt: 'Auréola dourada em torno de um núcleo escuro. Violeta a arder em âmbar.',
+            en: 'A golden halo around a dark core. Violet burning into amber.',
           },
           images: [
-            'assets/shop/ellipse sun/auron_500x700mm_bleed3mm_300dpi_2026-07-13-20-44-04.png',
-            'assets/shop/ellipse sun/entrance_persianas_wall_2026-07-13-19-06-22.jpg',
+            'assets/shop/eclipse/eclipse-front.png',
+            'assets/shop/eclipse/eclipse-sala-branca.jpg',
+            'assets/shop/eclipse/eclipse-escritorio.jpg',
           ],
           sizes: ELLIPSE_SIZES,
           shape: 'elipse',
           gallery: {
-            image: 'assets/gallery/ellipse sun/entrance_persianas_wall_2026-07-13-19-06-22.jpg',
-            caption: { pt: 'Oval quente. A luz no início do dia.', en: 'A warm oval. First light of day.' },
+            image: 'assets/gallery/eclipse/eclipse-sala-branca.jpg',
+            caption: { pt: 'Auréola dourada. Um núcleo que se apaga.', en: 'A golden halo. A vanishing core.' },
+          },
+        },
+        {
+          id: 'miragem',
+          name: { pt: 'Miragem', en: 'Mirage' },
+          desc: {
+            pt: 'Oval quente em tons de pôr-do-sol, com um redemoinho suave ao centro.',
+            en: 'A warm oval in sunset tones, with a soft swirl at its centre.',
+          },
+          images: [
+            'assets/shop/miragem/miragem-front.png',
+            'assets/shop/miragem/miragem-entrada.jpg',
+            'assets/shop/miragem/miragem-sala-boho.jpg',
+          ],
+          sizes: ELLIPSE_SIZES,
+          shape: 'elipse',
+          gallery: {
+            image: 'assets/gallery/miragem/miragem-entrada.jpg',
+            caption: { pt: 'Calor em movimento. Um tremor de luz.', en: 'Heat in motion. A shimmer of light.' },
           },
         },
         {
