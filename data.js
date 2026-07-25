@@ -184,6 +184,25 @@ window.CATALOG = {
           },
         },
         {
+          id: 'solsticio',
+          name: { pt: 'Solstício', en: 'Solstice' },
+          desc: {
+            pt: 'Um horizonte noturno — azul profundo a ceder a uma linha rosa, antes do escuro.',
+            en: 'A night horizon — deep blue giving way to a pink line, before the dark.',
+          },
+          images: [
+            'assets/shop/solsticio/solsticio-front.jpg',
+            'assets/shop/solsticio/solsticio-quarto.jpg',
+            'assets/shop/solsticio/solsticio-industrial.jpg',
+          ],
+          sizes: RECT_SIZES,
+          shape: 'rect-h',
+          gallery: {
+            image: 'assets/gallery/solsticio/solsticio-quarto.jpg',
+            caption: { pt: 'O ponto de viragem entre a luz e o escuro.', en: 'The turning point between light and dark.' },
+          },
+        },
+        {
           id: 'eclipse',
           name: { pt: 'Eclipse', en: 'Eclipse' },
           desc: {
