@@ -526,6 +526,7 @@ body.modal-open{ overflow:hidden; }
 .carousel-track{ display:flex; height:100%; transition:transform .5s cubic-bezier(.2,.7,.2,1); }
 .car-slide{ min-width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
 .car-slide img{ width:100%; height:100%; object-fit:cover; }
+.car-slide.is-front img{ object-fit:contain; }
 .car-arrow{
   position:absolute; top:50%; transform:translateY(-50%);
   width:42px; height:42px; border-radius:50%;

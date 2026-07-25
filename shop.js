@@ -153,8 +153,13 @@ function fillModal() {
 
   // carrossel
   const track = document.getElementById('car-track');
+  // a 1ª imagem é sempre o design "à chapa" (ver COMO-ADICIONAR-PECA.md) —
+  // tem de aparecer por inteiro, sem cortes, seja qual for a proporção
+  // (peças horizontais ficavam cortadas a meio dentro do quadro em pé do
+  // carrossel). As restantes são fotos de contexto, essas sim preenchem
+  // o quadro (fica melhor cheias, e são fotos, não o design a vender).
   track.innerHTML = piece.images
-    .map((src) => `<div class="car-slide"><img src="${src}" alt="${piece.name[lang]}"></div>`)
+    .map((src, i) => `<div class="car-slide${i === 0 ? ' is-front' : ''}"><img src="${src}" alt="${piece.name[lang]}"></div>`)
     .join('');
   const dots = document.getElementById('car-dots');
   dots.innerHTML = piece.images
